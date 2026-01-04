@@ -1,0 +1,123 @@
+---
+title: "Data Cleaning"
+author: "Your Name"
+date: today
+format:
+  html:
+    code-fold: false
+    toc: true
+---
+
+# Introduction
+
+Now I'll clean the data to prepare it for analysis.
+
+## Load Libraries
+```{r}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+## Load Raw Data
+```{r}
+earthquake_raw <- readRDS("../data/processed/earthquake_raw.rds")
+```
+
+## Remove Empty Columns
+```{r}
+earthquake <- earthquake_raw %>%
+  select(-starts_with("Empty"))
+
+cat("✓ Removed empty columns\n")
+```
+
+## Convert Data Types
+```{r}
+earthquake <- earthquake %>%
+  mutate(
+    # Convert to numbers
+    Year = as.integer(Year),
+    Month = as.integer(Month),
+    Day = as.integer(Day),
+    Hour = as.integer(Hour),
+    Minute = as.integer(Minute),
+    Second = as.integer(Second),
+    Magnitude = as.numeric(Magnitude),
+    Epicenter_Lat = as.numeric(Epicenter_Lat),
+    Epicenter_Lon = as.numeric(Epicenter_Lon),
+    Distance_km = as.numeric(Distance_km),
+    Intensity = as.integer(Intensity)
+  )
+
+cat("✓ Converted data types\n")
+```
+
+## Create DateTime Column
+```{r}
+earthquake <- earthquake %>%
+  mutate(
+    DateTime = make_datetime(Year, Month, Day, Hour, Minute, Second)
+  )
+
+cat("✓ Created DateTime column\n")
+cat("Date range:", format(min(earthquake$DateTime)), "to", format(max(earthquake$DateTime)), "\n")
+```
+
+## Remove Missing Values
+```{r}
+# Before
+cat("Rows before:", nrow(earthquake), "\n")
+
+# Remove rows without coordinates
+earthquake <- earthquake %>%
+  filter(!is.na(Epicenter_Lat) & !is.na(Epicenter_Lon))
+
+# After
+cat("Rows after:", nrow(earthquake), "\n")
+```
+
+## Add Helpful Categories
+```{r}
+earthquake <- earthquake %>%
+  mutate(
+    # Distance categories
+    Distance_Category = case_when(
+      Distance_km < 50 ~ "Near",
+      Distance_km < 100 ~ "Medium",
+      Distance_km < 150 ~ "Far",
+      TRUE ~ "Very Far"
+    )
+  )
+
+cat("✓ Added distance categories\n")
+```
+
+## Check the Cleaned Data
+```{r}
+# Preview
+head(earthquake) %>% kable()
+```
+```{r}
+# Summary
+cat("\nCleaned Data Summary:\n")
+cat("Total observations:", nrow(earthquake), "\n")
+cat("States:", paste(unique(earthquake$State), collapse = ", "), "\n")
+cat("Magnitude range:", min(earthquake$Magnitude, na.rm = TRUE), 
+    "to", max(earthquake$Magnitude, na.rm = TRUE), "\n")
+```
+
+## Save Cleaned Data
+```{r}
+# Save as RDS
+saveRDS(earthquake, "../data/processed/earthquake_clean.rds")
+
+# Also save as CSV
+write_csv(earthquake, "../data/processed/earthquake_clean.csv")
+
+cat("✓ Cleaned data saved!\n")
+```
+
+---
+
+**Next:** Go to [Exploratory Analysis](03-exploratory.qmd) →

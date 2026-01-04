@@ -1,0 +1,122 @@
+---
+title: "Data Import"
+author: "Your Name"
+date: today
+format:
+  html:
+    code-fold: false
+    toc: true
+---
+
+# Introduction
+
+In this document, I'll load the earthquake data from an Excel file.
+
+## Load Libraries
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(knitr)
+```
+
+## Import the Data
+
+```{r}
+# Read the Excel file
+earthquake_raw <- read_excel("../data/raw/earthquake_data.xlsx")
+
+# Convert to data frame
+earthquake_raw <- as.data.frame(earthquake_raw)
+
+# Show what we got
+cat("=== Data Import Summary ===\n")
+cat("Rows:", nrow(earthquake_raw), "\n")
+cat("Columns:", ncol(earthquake_raw), "\n\n")
+
+# Show first row to understand structure
+cat("First row sample:\n")
+print(earthquake_raw[1, ])
+```
+
+## Check Data Structure
+
+```{r}
+# Let's see what column names Excel gave us (if any)
+cat("Current column names:\n")
+print(names(earthquake_raw))
+
+cat("\nData types:\n")
+str(earthquake_raw)
+```
+
+## Assign Proper Column Names
+
+```{r}
+# We'll assign names based on how many columns we actually have
+num_cols <- ncol(earthquake_raw)
+
+if (num_cols == 20) {
+  # Full 20-column format
+  colnames(earthquake_raw) <- c(
+    "Year", "Month", "Day", "Hour", "Minute", "Second",
+    "Magnitude", "Empty1", 
+    "Epicenter_Lat", "Epicenter_Lon",
+    "Empty2", "Empty3", 
+    "Distance_km", "Station_Lat", "Station_Lon", 
+    "Intensity", "State", "Location", "Quality", "Country"
+  )
+  cat("✓ Assigned 20 column names\n")
+  
+} else if (num_cols == 2) {
+  # Maybe your data is in a different format
+  colnames(earthquake_raw) <- c("Column1", "Column2")
+  cat("⚠ Only 2 columns found. Please check your Excel file format.\n")
+  
+} else {
+  # Any other number - use generic names
+  colnames(earthquake_raw) <- paste0("Column_", 1:num_cols)
+  cat("⚠ Found", num_cols, "columns (expected 20)\n")
+  cat("Using generic column names for now.\n")
+}
+```
+
+## Preview the Data
+
+```{r}
+# Show first few rows
+head(earthquake_raw, 5) %>% kable()
+```
+
+## Basic Summary
+
+```{r}
+# Summary of the data
+summary(earthquake_raw)
+```
+
+## Save the Data
+
+```{r}
+# Create folder if needed
+dir.create("../data/processed", showWarnings = FALSE, recursive = TRUE)
+
+# Save for next steps
+saveRDS(earthquake_raw, "../data/processed/earthquake_raw.rds")
+cat("✓ Data saved!\n")
+```
+
+## Important Note
+
+::: {.callout-warning}
+If you see warnings about unexpected column counts, your Excel file might not be formatted correctly. 
+
+Please check:
+1. Does your Excel have data in all 20 columns?
+2. Is each value in a separate cell?
+3. Are there any merged cells?
+:::
+
+---
+
+**Next:** Go to [Data Cleaning](02-data-cleaning.qmd) →
