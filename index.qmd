@@ -1,0 +1,52 @@
+---
+title: "Earthquake Data Analysis"
+author: "Your Name"
+date: today
+---
+
+# Overview
+
+This project analyzes earthquake data from December 1948 in the California-Nevada region.
+
+## Research Questions
+
+1. What is the magnitude distribution of earthquakes?
+2. How does distance affect intensity?
+3. Are there geographic patterns in the data?
+4. What correlations exist between variables?
+
+## Dataset
+
+The dataset contains earthquake observations including:
+
+- Temporal data (date and time)
+- Magnitude measurements
+- Geographic coordinates (epicenter and stations)
+- Distance from epicenter
+- Intensity at recording stations
+- Location information (states and cities)
+
+## Analysis Steps
+
+1. [Exploratory Analysis](qmd/03-exploratory.qmd) - Visualize patterns
+2. [Correlation Analysis](qmd/04-correlations.qmd) - Find relationships
+3. [Statistical Tests](qmd/05-statistics.qmd) - Test hypotheses
+4. [Advanced Visualizations](qmd/06-visualizations.qmd) - Create detailed plots
+5. [Conclusions](qmd/07-conclusions.qmd) - Summary and findings
+
+## Key Findings Preview
+
+- Epicenter located near Lake Tahoe (CA/NV border)
+- Magnitude 8 earthquake recorded at multiple stations
+- Intensity decreases with distance (as expected)
+- Activity concentrated over December 28-29, 1948
+
+## About
+
+**Author:** Your Name  
+**Course:** Statistical Analysis with R  
+**Tools:** R, Quarto, tidyverse
+
+---
+
+*Click any link above to view the analysis!*
