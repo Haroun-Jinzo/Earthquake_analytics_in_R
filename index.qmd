@@ -30,8 +30,7 @@ The dataset contains earthquake observations including:
 
 1. [Exploratory Analysis](qmd/03-exploratory.qmd) - Visualize patterns
 2. [Correlation Analysis](qmd/04-correlations.qmd) - Find relationships
-3. [Statistical Tests](qmd/05-statistics.qmd) - Test hypotheses
-4. [Advanced Visualizations](qmd/06-visualizations.qmd) - Create detailed plots
+3. [Advanced Visualizations](qmd/06-visualizations.qmd) - Create detailed plots
 5. [Conclusions](qmd/07-conclusions.qmd) - Summary and findings
 
 ## Key Findings Preview

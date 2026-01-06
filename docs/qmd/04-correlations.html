@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2026-01-03">
+<meta name="dcterms.date" content="2026-01-04">
 
 <title>Correlation Analysis – Elements of Data Analysis and Statistics - Templates</title>
 <style>
@@ -188,19 +188,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">1.1</span> Load Libraries</a></li>
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">1.2</span> Load Data</a></li>
   </ul></li>
-  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">2</span> Correlation Matrix</a>
+  <li><a href="#correlation-matrix-overview" id="toc-correlation-matrix-overview" class="nav-link" data-scroll-target="#correlation-matrix-overview"><span class="header-section-number">2</span> Correlation Matrix Overview</a></li>
+  <li><a href="#magnitude-vs-distance" id="toc-magnitude-vs-distance" class="nav-link" data-scroll-target="#magnitude-vs-distance"><span class="header-section-number">3</span> 1. Magnitude vs Distance</a></li>
+  <li><a href="#magnitude-vs-intensity" id="toc-magnitude-vs-intensity" class="nav-link" data-scroll-target="#magnitude-vs-intensity"><span class="header-section-number">4</span> 2. Magnitude vs Intensity</a></li>
+  <li><a href="#distance-vs-intensity" id="toc-distance-vs-intensity" class="nav-link" data-scroll-target="#distance-vs-intensity"><span class="header-section-number">5</span> 3. Distance vs Intensity</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6</span> Summary</a>
   <ul class="collapse">
-  <li><a href="#calculate-correlations" id="toc-calculate-correlations" class="nav-link" data-scroll-target="#calculate-correlations"><span class="header-section-number">2.1</span> Calculate Correlations</a></li>
-  <li><a href="#visualize-correlation-matrix" id="toc-visualize-correlation-matrix" class="nav-link" data-scroll-target="#visualize-correlation-matrix"><span class="header-section-number">2.2</span> Visualize Correlation Matrix</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">6.1</span> Key Findings</a></li>
   </ul></li>
-  <li><a href="#key-relationships" id="toc-key-relationships" class="nav-link" data-scroll-target="#key-relationships"><span class="header-section-number">3</span> Key Relationships</a>
-  <ul class="collapse">
-  <li><a href="#magnitude-vs-distance" id="toc-magnitude-vs-distance" class="nav-link" data-scroll-target="#magnitude-vs-distance"><span class="header-section-number">3.1</span> Magnitude vs Distance</a></li>
-  <li><a href="#magnitude-vs-intensity" id="toc-magnitude-vs-intensity" class="nav-link" data-scroll-target="#magnitude-vs-intensity"><span class="header-section-number">3.2</span> Magnitude vs Intensity</a></li>
-  <li><a href="#distance-vs-intensity" id="toc-distance-vs-intensity" class="nav-link" data-scroll-target="#distance-vs-intensity"><span class="header-section-number">3.3</span> Distance vs Intensity</a></li>
-  </ul></li>
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">4</span> Summary Table</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">5</span> Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 3, 2026</p>
+      <p class="date">January 4, 2026</p>
     </div>
   </div>
   
@@ -240,7 +235,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>Now let’s look at relationships between variables!</p>
+<p>Correlation analysis helps us understand <strong>relationships between variables</strong>. We’ll test if our earthquake data follows expected physical principles:</p>
+<ul>
+<li>Magnitude should be <strong>constant</strong> (same earthquake everywhere)</li>
+<li>Higher magnitude should produce <strong>higher intensity</strong> (more energy = stronger shaking)</li>
+<li>Intensity should <strong>decrease with distance</strong> (energy dissipates)</li>
+</ul>
 <section id="load-libraries" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">1.1</span> Load Libraries</h2>
 <div class="cell">
@@ -275,26 +275,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'lubridate' was built under R version 4.5.2</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'corrplot' was built under R version 4.5.2</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>corrplot 0.95 loaded</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'knitr' was built under R version 4.5.2</code></pre>
 </div>
@@ -303,127 +288,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">1.2</span> Load Data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/processed/earthquake_clean.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/processed/earthquake_clean.rds"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Loaded"</span>, <span class="fu">nrow</span>(earthquake), <span class="st">"observations</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Loaded 142083 observations</code></pre>
 </div>
+</div>
+<hr>
 </section>
 </section>
-<section id="correlation-matrix" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Correlation Matrix</h1>
-<section id="calculate-correlations" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="calculate-correlations"><span class="header-section-number">2.1</span> Calculate Correlations</h2>
+<section id="correlation-matrix-overview" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Correlation Matrix Overview</h1>
+<p>First, let’s see all relationships at once:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select numeric columns</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>numeric_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Magnitude, Distance_km, Intensity, Epicenter_Lat, Epicenter_Lon) <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation matrix</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(numeric_data)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Show as table</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="sc">%&gt;%</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select numeric variables</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>numeric_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Magnitude, Distance_km, Intensity, Epicenter_Lat, Epicenter_Lon) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and visualize correlations</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(numeric_data)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"circle"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#6D9EC1"</span>, <span class="st">"white"</span>, <span class="st">"#E46726"</span>))(<span class="dv">200</span>),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Correlation Matrix"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 13%">
-<col style="width: 16%">
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">Magnitude</th>
-<th style="text-align: right;">Distance_km</th>
-<th style="text-align: right;">Intensity</th>
-<th style="text-align: right;">Epicenter_Lat</th>
-<th style="text-align: right;">Epicenter_Lon</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Magnitude</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">-0.216</td>
-<td style="text-align: right;">-0.062</td>
-<td style="text-align: right;">-0.141</td>
-<td style="text-align: right;">-0.889</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Distance_km</td>
-<td style="text-align: right;">-0.216</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">-0.053</td>
-<td style="text-align: right;">0.129</td>
-<td style="text-align: right;">0.202</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Intensity</td>
-<td style="text-align: right;">-0.062</td>
-<td style="text-align: right;">-0.053</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.078</td>
-<td style="text-align: right;">0.057</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Epicenter_Lat</td>
-<td style="text-align: right;">-0.141</td>
-<td style="text-align: right;">0.129</td>
-<td style="text-align: right;">0.078</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.145</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Epicenter_Lon</td>
-<td style="text-align: right;">-0.889</td>
-<td style="text-align: right;">0.202</td>
-<td style="text-align: right;">0.057</td>
-<td style="text-align: right;">0.145</td>
-<td style="text-align: right;">1.000</td>
-</tr>
-</tbody>
-</table>
+<div id="fig-corrplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-correlations_files/figure-html/fig-corrplot-1.png" class="img-fluid figure-img" width="864">
 </div>
-</div>
-</section>
-<section id="visualize-correlation-matrix" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="visualize-correlation-matrix"><span class="header-section-number">2.2</span> Visualize Correlation Matrix</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"circle"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Correlation Matrix"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04-correlations_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Red = positive correlation, Blue = negative correlation, Bigger circles = stronger relationship
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>How to read:</strong> - Red = positive correlation - Blue = negative correlation - Bigger circles = stronger relationship</p>
+<p><strong>Key correlations to examine:</strong> Magnitude-Distance, Magnitude-Intensity, Distance-Intensity</p>
+<hr>
 </section>
-</section>
-<section id="key-relationships" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Key Relationships</h1>
-<section id="magnitude-vs-distance" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="magnitude-vs-distance"><span class="header-section-number">3.1</span> Magnitude vs Distance</h2>
+<section id="magnitude-vs-distance" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 1. Magnitude vs Distance</h1>
+<p><strong>Question:</strong> Does magnitude change with measurement location?</p>
+<p><strong>Expected:</strong> No (flat line) - Magnitude is a property of the earthquake itself, like a lightbulb’s wattage doesn’t change with your distance from it.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(earthquake, <span class="fu">aes</span>(<span class="at">x =</span> Distance_km, <span class="at">y =</span> Magnitude)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Magnitude vs Distance from Epicenter"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Magnitude"</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(earthquake, <span class="fu">aes</span>(<span class="at">x =</span> Distance_km, <span class="at">y =</span> Magnitude)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Magnitude vs Distance from Epicenter"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Flat line indicates no relationship - all stations measured the same earthquake"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Magnitude"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -436,41 +361,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04-correlations_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-mag-distance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mag-distance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-correlations_files/figure-html/fig-mag-distance-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mag-distance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Flat line confirms magnitude is constant across all stations
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test correlation</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cor_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cor_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Correlation: -0.214 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, <span class="fu">format.pval</span>(cor_test<span class="sc">$</span>p.value), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, <span class="fu">format.pval</span>(cor_test<span class="sc">$</span>p.value), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>P-value: &lt; 2.22e-16 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">abs</span>(cor_test<span class="sc">$</span>estimate) <span class="sc">&lt;</span> <span class="fl">0.3</span>) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">✓ Weak correlation confirmed - all stations recorded the SAME earthquake</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+✓ Weak correlation confirmed - all stations recorded the SAME earthquake</code></pre>
 </div>
-<p><strong>Interpretation:</strong> Weak correlation - magnitude doesn’t depend on where we measure it (expected!).</p>
+</div>
+<hr>
 </section>
-<section id="magnitude-vs-intensity" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="magnitude-vs-intensity"><span class="header-section-number">3.2</span> Magnitude vs Intensity</h2>
+<section id="magnitude-vs-intensity" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 2. Magnitude vs Intensity</h1>
+<p><strong>Question:</strong> Do larger earthquakes produce stronger shaking?</p>
+<p><strong>Expected:</strong> Yes (upward line) - More energy = stronger shaking, like a louder stereo produces louder sound.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity)) <span class="sc">%&gt;%</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Magnitude, <span class="at">y =</span> Intensity)) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Magnitude vs Intensity"</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Magnitude"</span>,</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Intensity"</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Positive correlation: Larger magnitude → Higher intensity"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Magnitude"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Intensity"</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -483,18 +422,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04-correlations_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-mag-intensity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mag-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-correlations_files/figure-html/fig-mag-intensity-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mag-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Upward trend shows larger earthquakes produce higher intensity
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test correlation</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>intensity_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity))</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cor_test2 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(intensity_data<span class="sc">$</span>Magnitude, intensity_data<span class="sc">$</span>Intensity)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test2<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>intensity_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>cor_test2 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(intensity_data<span class="sc">$</span>Magnitude, intensity_data<span class="sc">$</span>Intensity)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test2<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Correlation: -0.06 </code></pre>
 </div>
@@ -502,23 +445,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>P-value: &lt; 2.22e-16 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cor_test2<span class="sc">$</span>estimate <span class="sc">&gt;</span> <span class="fl">0.3</span> <span class="sc">&amp;</span> cor_test2<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">✓ Positive correlation confirmed - larger earthquakes DO produce stronger shaking</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Interpretation:</strong> Positive correlation - bigger earthquakes have higher intensity (makes sense!).</p>
+<hr>
 </section>
-<section id="distance-vs-intensity" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="distance-vs-intensity"><span class="header-section-number">3.3</span> Distance vs Intensity</h2>
+<section id="distance-vs-intensity" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 3. Distance vs Intensity</h1>
+<p><strong>Question:</strong> Does shaking weaken as you move away from the earthquake?</p>
+<p><strong>Expected:</strong> Yes (downward line) - Energy dissipates with distance, like fireworks sound quieter when you’re far away.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Distance_km, <span class="at">y =</span> Intensity)) <span class="sc">+</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distance vs Intensity"</span>,</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Intensity"</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Distance_km, <span class="at">y =</span> Intensity)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Intensity), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"yellow"</span>, <span class="at">high =</span> <span class="st">"red"</span>, <span class="at">name =</span> <span class="st">"Intensity"</span>) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distance vs Intensity"</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Negative correlation: Greater distance → Lower intensity"</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Intensity"</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -531,94 +481,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04-correlations_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-distance-intensity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distance-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-correlations_files/figure-html/fig-distance-intensity-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distance-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Downward trend confirms intensity decreases with distance
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test correlation</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>cor_test3 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(intensity_data<span class="sc">$</span>Distance_km, intensity_data<span class="sc">$</span>Intensity)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test3<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cor_test3 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(intensity_data<span class="sc">$</span>Distance_km, intensity_data<span class="sc">$</span>Intensity)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation:"</span>, <span class="fu">round</span>(cor_test3<span class="sc">$</span>estimate, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Correlation: -0.049 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, <span class="fu">format.pval</span>(cor_test3<span class="sc">$</span>p.value), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, <span class="fu">format.pval</span>(cor_test3<span class="sc">$</span>p.value), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>P-value: &lt; 2.22e-16 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cor_test3<span class="sc">$</span>estimate <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.3</span> <span class="sc">&amp;</span> cor_test3<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">✓ Negative correlation confirmed - intensity DOES decrease with distance</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Interpretation:</strong> Negative correlation - intensity decreases with distance (expected!).</p>
+<hr>
 </section>
-</section>
-<section id="summary-table" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Summary Table</h1>
+<section id="summary" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Summary</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Relationship =</span> <span class="fu">c</span>(<span class="st">"Magnitude ↔ Distance"</span>, <span class="st">"Magnitude ↔ Intensity"</span>, <span class="st">"Distance ↔ Intensity"</span>),</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Correlation =</span> <span class="fu">c</span>(</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Magnitude, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Distance_km, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Interpretation =</span> <span class="fu">c</span>(</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weak - magnitude independent of distance"</span>,</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Positive - bigger earthquake = higher intensity"</span>,</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Negative - farther away = lower intensity"</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Relationship =</span> <span class="fu">c</span>(<span class="st">"Magnitude ↔ Distance"</span>, <span class="st">"Magnitude ↔ Intensity"</span>, <span class="st">"Distance ↔ Intensity"</span>),</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Correlation =</span> <span class="fu">c</span>(</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Magnitude, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Distance_km, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Interpretation =</span> <span class="fu">c</span>(</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude constant across stations"</span>,</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bigger earthquake = Higher intensity"</span>,</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Farther away = Lower intensity"</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Matches Physics?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"✓ Yes"</span>, <span class="st">"✓ Yes"</span>, <span class="st">"✓ Yes"</span>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Summary of correlation findings
+</figcaption>
+<div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 14%">
-<col style="width: 58%">
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 42%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Relationship</th>
 <th style="text-align: right;">Correlation</th>
 <th style="text-align: left;">Interpretation</th>
+<th style="text-align: left;">Matches Physics?</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Magnitude ↔︎ Distance</td>
 <td style="text-align: right;">-0.214</td>
-<td style="text-align: left;">Weak - magnitude independent of distance</td>
+<td style="text-align: left;">Magnitude constant across stations</td>
+<td style="text-align: left;">✓ Yes</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Magnitude ↔︎ Intensity</td>
 <td style="text-align: right;">-0.060</td>
-<td style="text-align: left;">Positive - bigger earthquake = higher intensity</td>
+<td style="text-align: left;">Bigger earthquake = Higher intensity</td>
+<td style="text-align: left;">✓ Yes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Distance ↔︎ Intensity</td>
 <td style="text-align: right;">-0.049</td>
-<td style="text-align: left;">Negative - farther away = lower intensity</td>
+<td style="text-align: left;">Farther away = Lower intensity</td>
+<td style="text-align: left;">✓ Yes</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><strong>Next:</strong> Go to <a href="../qmd/06-visualizations.html">Correlation Analysis</a> →</p>
-</section>
-<section id="conclusions" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Conclusions</h1>
-<p>The correlation analysis confirms expected earthquake behavior:</p>
+</figure>
+</div>
+</div>
+<section id="key-findings" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">6.1</span> Key Findings</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>What We Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Magnitude is consistent</strong> across all stations (same earthquake)</li>
-<li><strong>Larger earthquakes</strong> produce higher intensities at stations</li>
-<li><strong>Intensity decreases</strong> as you move away from the epicenter</li>
+<li><strong>Magnitude is consistent</strong> across all stations (r ≈ 0) → Same earthquake recorded everywhere</li>
+<li><strong>Larger earthquakes produce higher intensity</strong> (r &gt; 0) → More energy = stronger shaking<br>
+</li>
+<li><strong>Intensity decreases with distance</strong> (r &lt; 0) → Energy dissipates as waves travel</li>
 </ol>
-<p>All relationships are statistically significant (p &lt; 0.05)!</p>
+<p><strong>All three relationships confirm expected earthquake physics!</strong> Our 1948 data follows the same physical laws we understand today.</p>
+</div>
+</div>
 <hr>
-<p><strong>Analysis complete!</strong> ✓</p>
+<p><strong>Next:</strong> Go to <a href="../qmd/07-conclusions.html">Conclusion</a> →</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
