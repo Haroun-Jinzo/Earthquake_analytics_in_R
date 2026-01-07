@@ -1,0 +1,208 @@
+---
+title: "Earthquake Data Analysis Project"
+subtitle: "Statistical Analysis of 1948 California-Nevada Seismic Events"
+author: "Your Name Here"
+date: today
+format:
+  html:
+    toc: false
+    theme: cosmo
+---
+
+::: {.content-visible when-format="html"}
+<div style="text-align: center; padding: 40px 20px;">
+
+# 🌍 Earthquake Data Analysis
+
+## Statistical Exploration of Historical Seismic Data
+
+<br>
+
+---
+
+<br>
+
+### 📚 Academic Information
+
+**Student Name:** Your Full Name  
+**Student ID:** 123456789  
+**Course:** Statistical Analysis with R  
+**Professor:** Dr. Professor Name  
+**Institution:** Polytechnique University  
+**Academic Year:** 2024-2025
+
+<br>
+
+---
+
+<br>
+
+### 📊 Project Overview
+
+This project presents a comprehensive statistical analysis of earthquake data from **December 1948** in the **California-Nevada border region**. Using R and Quarto, we explore patterns, correlations, and characteristics of historical seismic events.
+
+<br>
+
+### 🎯 Research Objectives
+
+1. Analyze the distribution and characteristics of earthquake magnitudes
+2. Investigate geographic patterns of epicenters and recording stations
+3. Examine the relationship between distance and intensity
+4. Discover correlations between magnitude, distance, and intensity
+5. Validate findings through statistical testing
+
+<br>
+
+### 📁 Dataset Description
+
+**Source:** Historical Earthquake Records (1948)  
+**Region:** California-Nevada Border (Lake Tahoe Area)  
+**Time Period:** December 28-29, 1948  
+**Observations:** Multiple recording stations across two states  
+**Variables:** Date/Time, Magnitude, Coordinates, Distance, Intensity, Location
+
+**Key Variables:**
+- **Magnitude:** Earthquake strength (Richter scale)
+- **Epicenter:** Geographic origin of earthquake (Lat/Lon)
+- **Distance:** Distance from epicenter to recording station (km)
+- **Intensity:** Shaking strength at each station (Modified Mercalli scale)
+- **Location:** Recording station details (state, city)
+
+<br>
+
+### 🔬 Methodology
+
+- **Tools:** R, RStudio, Quarto, tidyverse
+- **Techniques:** Exploratory Data Analysis, Correlation Analysis, Statistical Testing
+- **Visualizations:** Maps, Time Series, Scatter Plots, Correlation Matrices
+- **Statistical Tests:** Correlation tests, Linear Regression, Hypothesis Testing
+
+<br>
+
+### 📈 Expected Outcomes
+
+Through this analysis, we aim to:
+- Understand the magnitude and scope of the 1948 seismic event
+- Confirm expected relationships from earthquake physics
+- Visualize geographic and temporal patterns
+- Provide statistical evidence for seismic wave propagation
+
+<br>
+
+---
+
+<br>
+
+### 🚀 Navigate the Analysis
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+
+<div style="border: 2px solid #3498db; padding: 20px; border-radius: 10px; text-align: center;">
+**📥 Data Import**  
+[View Analysis →](qmd/01-data-import.qmd)
+</div>
+
+<div style="border: 2px solid #2ecc71; padding: 20px; border-radius: 10px; text-align: center;">
+**🧹 Data Cleaning**  
+[View Analysis →](qmd/02-data-cleaning.qmd)
+</div>
+
+<div style="border: 2px solid #e74c3c; padding: 20px; border-radius: 10px; text-align: center;">
+**🔍 Exploratory Analysis**  
+[View Analysis →](qmd/03-exploratory.qmd)
+</div>
+
+<div style="border: 2px solid #9b59b6; padding: 20px; border-radius: 10px; text-align: center;">
+**📊 Correlations**  
+[View Analysis →](qmd/04-correlations.qmd)
+</div>
+
+<div style="border: 2px solid #f39c12; padding: 20px; border-radius: 10px; text-align: center;">
+**📈 Statistical Tests**  
+[View Analysis →](qmd/05-statistics.qmd)
+</div>
+
+<div style="border: 2px solid #1abc9c; padding: 20px; border-radius: 10px; text-align: center;">
+**✅ Conclusions**  
+[View Analysis →](qmd/07-conclusions.qmd)
+</div>
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+### 📅 Project Timeline
+
+**Submission Date:** `r format(Sys.Date(), "%B %d, %Y")`  
+**Project Duration:** 4 weeks  
+**Status:** ✓ Complete
+
+<br>
+
+---
+
+<br>
+
+### 📧 Contact Information
+
+**Email:** your.email@polytechnique.edu  
+**GitHub:** github.com/yourusername  
+**LinkedIn:** linkedin.com/in/yourprofile
+
+<br>
+
+---
+
+<br>
+
+<p style="text-align: center; color: #7f8c8d; font-size: 0.9em;">
+© 2024 | Statistical Analysis Project | Polytechnique University<br>
+Generated with Quarto and R
+</p>
+
+</div>
+:::
+
+::: {.content-visible when-format="pdf"}
+
+# Project Information
+
+**Title:** Earthquake Data Analysis Project  
+**Student:** Your Full Name  
+**Student ID:** 123456789  
+**Course:** Statistical Analysis with R  
+**Professor:** Dr. Professor Name  
+**Institution:** Polytechnique University  
+**Date:** `r format(Sys.Date(), "%B %d, %Y")`
+
+## Project Description
+
+This project analyzes earthquake data from December 1948 in the California-Nevada region using statistical methods in R.
+
+## Dataset
+
+- **Source:** Historical Earthquake Records (1948)
+- **Region:** California-Nevada Border
+- **Variables:** Magnitude, Distance, Intensity, Location, Time
+
+## Objectives
+
+1. Analyze earthquake magnitude distributions
+2. Examine geographic patterns
+3. Investigate correlations between variables
+4. Validate findings through statistical testing
+
+## Methodology
+
+- Exploratory Data Analysis
+- Correlation Analysis  
+- Statistical Hypothesis Testing
+- Data Visualization
+
+**Contact:** your.email@polytechnique.edu
+
+:::

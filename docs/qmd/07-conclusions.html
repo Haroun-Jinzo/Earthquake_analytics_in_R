@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2026-01-04">
+<meta name="dcterms.date" content="2026-01-07">
 
-<title>Conclusions – Elements of Data Analysis and Statistics - Templates</title>
+<title>Conclusions – Earthquake Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,9 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Elements of Data Analysis and Statistics - Templates
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/07-conclusions.html">✅ Conclusions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Elements of Data Analysis and Statistics - Templates</a> 
+      <a href="../">Earthquake Data Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -146,32 +144,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake Data Analysis</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Labs</span></a>
+ <span class="menu-text">📊 Analysis Pipeline</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp1.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/01-data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📥 Data Import</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp2.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/02-data-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧹 Data Cleaning</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/03-exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔍 Exploratory Analysis</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp4.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/04-correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔗 Correlation Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/07-conclusions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">✅ Conclusions</span></a>
+  </div>
+</li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Projects</span></span>
   </li>
     </ul>
     </div>
@@ -183,42 +201,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary"><span class="header-section-number">1</span> Project Summary</a>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link active" data-scroll-target="#load-data">Load Data</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a>
   <ul class="collapse">
-  <li><a href="#load-data-for-final-summary" id="toc-load-data-for-final-summary" class="nav-link" data-scroll-target="#load-data-for-final-summary"><span class="header-section-number">1.1</span> Load Data for Final Summary</a></li>
+  <li><a href="#magnitude" id="toc-magnitude" class="nav-link" data-scroll-target="#magnitude">1. Magnitude</a></li>
+  <li><a href="#geographic-distribution" id="toc-geographic-distribution" class="nav-link" data-scroll-target="#geographic-distribution">2. Geographic Distribution</a></li>
+  <li><a href="#distance-and-intensity-relationship" id="toc-distance-and-intensity-relationship" class="nav-link" data-scroll-target="#distance-and-intensity-relationship">3. Distance and Intensity Relationship</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">4. Correlations</a></li>
   </ul></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">2</span> Key Findings</a>
-  <ul class="collapse">
-  <li><a href="#geographic-patterns" id="toc-geographic-patterns" class="nav-link" data-scroll-target="#geographic-patterns"><span class="header-section-number">2.1</span> 1. Geographic Patterns</a></li>
-  <li><a href="#magnitude-analysis" id="toc-magnitude-analysis" class="nav-link" data-scroll-target="#magnitude-analysis"><span class="header-section-number">2.2</span> 2. Magnitude Analysis</a></li>
-  <li><a href="#distance-and-intensity-relationship" id="toc-distance-and-intensity-relationship" class="nav-link" data-scroll-target="#distance-and-intensity-relationship"><span class="header-section-number">2.3</span> 3. Distance and Intensity Relationship</a></li>
-  <li><a href="#temporal-pattern" id="toc-temporal-pattern" class="nav-link" data-scroll-target="#temporal-pattern"><span class="header-section-number">2.4</span> 4. Temporal Pattern</a></li>
-  <li><a href="#station-coverage" id="toc-station-coverage" class="nav-link" data-scroll-target="#station-coverage"><span class="header-section-number">2.5</span> 5. Station Coverage</a></li>
-  </ul></li>
-  <li><a href="#statistical-conclusions" id="toc-statistical-conclusions" class="nav-link" data-scroll-target="#statistical-conclusions"><span class="header-section-number">3</span> Statistical Conclusions</a>
-  <ul class="collapse">
-  <li><a href="#confirmed-hypotheses" id="toc-confirmed-hypotheses" class="nav-link" data-scroll-target="#confirmed-hypotheses"><span class="header-section-number">3.1</span> Confirmed Hypotheses</a></li>
-  <li><a href="#correlation-summary" id="toc-correlation-summary" class="nav-link" data-scroll-target="#correlation-summary"><span class="header-section-number">3.2</span> Correlation Summary</a></li>
-  </ul></li>
-  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment"><span class="header-section-number">4</span> Data Quality Assessment</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">5</span> Limitations</a></li>
-  <li><a href="#real-world-implications" id="toc-real-world-implications" class="nav-link" data-scroll-target="#real-world-implications"><span class="header-section-number">6</span> Real-World Implications</a>
-  <ul class="collapse">
-  <li><a href="#for-seismology" id="toc-for-seismology" class="nav-link" data-scroll-target="#for-seismology"><span class="header-section-number">6.1</span> For Seismology</a></li>
-  <li><a href="#for-public-safety" id="toc-for-public-safety" class="nav-link" data-scroll-target="#for-public-safety"><span class="header-section-number">6.2</span> For Public Safety</a></li>
-  </ul></li>
-  <li><a href="#recommendations-for-future-analysis" id="toc-recommendations-for-future-analysis" class="nav-link" data-scroll-target="#recommendations-for-future-analysis"><span class="header-section-number">7</span> Recommendations for Future Analysis</a></li>
-  <li><a href="#final-summary-table" id="toc-final-summary-table" class="nav-link" data-scroll-target="#final-summary-table"><span class="header-section-number">8</span> Final Summary Table</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9</span> Conclusion</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="header-section-number">10</span> Acknowledgments</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact"><span class="header-section-number">11</span> Contact</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/07-conclusions.html">✅ Conclusions</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Conclusions</h1>
 </div>
@@ -237,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 4, 2026</p>
+      <p class="date">January 7, 2026</p>
     </div>
   </div>
   
@@ -249,13 +248,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="project-summary" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Project Summary</h1>
-<p>This analysis examined earthquake data from December 1948 in the California-Nevada border region.</p>
-<section id="load-data-for-final-summary" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="load-data-for-final-summary"><span class="header-section-number">1.1</span> Load Data for Final Summary</h2>
+<section id="load-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-data">Load Data</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'tidyverse' was built under R version 4.5.2</code></pre>
 </div>
@@ -286,111 +285,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'lubridate' was built under R version 4.5.2</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'knitr' was built under R version 4.5.2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/processed/earthquake_clean.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/processed/earthquake_clean.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
+<hr>
 </section>
-</section>
-<section id="key-findings" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Key Findings</h1>
-<section id="geographic-patterns" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="geographic-patterns"><span class="header-section-number">2.1</span> 1. Geographic Patterns</h2>
+<section id="summary-statistics" class="level1">
+<h1>Summary Statistics</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epicenter location</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>main_epicenter <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Epicenter_Lat, Epicenter_Lon) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Count)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Primary Epicenter:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Primary Epicenter:</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Latitude:"</span>, <span class="fu">round</span>(main_epicenter<span class="sc">$</span>Epicenter_Lat, <span class="dv">2</span>), <span class="st">"°N</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Latitude: 43.94 °N</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Longitude:"</span>, <span class="fu">round</span>(main_epicenter<span class="sc">$</span>Epicenter_Lon, <span class="dv">2</span>), <span class="st">"°W</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Longitude: -74.26 °W</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Location: Near Lake Tahoe, CA/NV border</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Location: Near Lake Tahoe, CA/NV border</code></pre>
-</div>
-</div>
-<p><strong>Finding:</strong> The earthquake was centered near Lake Tahoe, a known seismically active region.</p>
-</section>
-<section id="magnitude-analysis" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="magnitude-analysis"><span class="header-section-number">2.2</span> 2. Magnitude Analysis</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mag_summary <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>),</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median =</span> <span class="fu">median</span>(Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>mag_summary <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total Observations"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Unique Stations"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"States Covered"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Magnitude"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude Range"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Max Distance"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Intensity"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">nrow</span>(earthquake), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">n_distinct</span>(earthquake<span class="sc">$</span>Location),</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">n_distinct</span>(earthquake<span class="sc">$</span>State),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">mean</span>(earthquake<span class="sc">$</span>Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>),</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">min</span>(earthquake<span class="sc">$</span>Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">" to "</span>, </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>           <span class="fu">max</span>(earthquake<span class="sc">$</span>Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(<span class="fu">max</span>(earthquake<span class="sc">$</span>Distance_km, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">0</span>), <span class="st">" km"</span>),</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">mean</span>(earthquake<span class="sc">$</span>Intensity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary_table, <span class="at">caption =</span> <span class="st">"Project Summary Statistics"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<caption>Project Summary Statistics</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">Mean</th>
-<th style="text-align: right;">Median</th>
-<th style="text-align: right;">Min</th>
-<th style="text-align: right;">Max</th>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">7.41</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">11</td>
+<td style="text-align: left;">Total Observations</td>
+<td style="text-align: left;">142,083</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unique Stations</td>
+<td style="text-align: left;">19416</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">States Covered</td>
+<td style="text-align: left;">67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean Magnitude</td>
+<td style="text-align: left;">7.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Magnitude Range</td>
+<td style="text-align: left;">4 to 11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Max Distance</td>
+<td style="text-align: left;">9930 km</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mean Intensity</td>
+<td style="text-align: left;">3.88</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><strong>Finding:</strong> Most earthquakes had magnitude 8, indicating this was primarily one major event recorded at multiple stations.</p>
+<hr>
 </section>
-<section id="distance-and-intensity-relationship" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="distance-and-intensity-relationship"><span class="header-section-number">2.3</span> 3. Distance and Intensity Relationship</h2>
+<section id="key-findings" class="level1">
+<h1>Key Findings</h1>
+<section id="magnitude" class="level2">
+<h2 class="anchored" data-anchor-id="magnitude">1. Magnitude</h2>
+<p>The dataset contains earthquakes ranging from magnitude 4 to 11, with an average magnitude of 7.41. Most observations cluster around magnitude 8, indicating a major seismic event.</p>
+</section>
+<section id="geographic-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="geographic-distribution">2. Geographic Distribution</h2>
+<p>The recording network spans 67 states with 19416 unique recording stations. The epicenter is located in the Lake Tahoe region on the California-Nevada border. Observations extend up to 9930 km from the epicenter.</p>
+</section>
+<section id="distance-and-intensity-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="distance-and-intensity-relationship">3. Distance and Intensity Relationship</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>intensity_summary <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Distance_Category) <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean_Intensity =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Intensity), <span class="dv">2</span>),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Count =</span> <span class="fu">n</span>(),</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>intensity_summary <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>intensity_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Distance_Category) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Intensity), <span class="dv">2</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Count =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(intensity_data, <span class="at">caption =</span> <span class="st">"Average Intensity by Distance Category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<caption>Average Intensity by Distance Category</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Distance_Category</th>
-<th style="text-align: right;">Mean_Intensity</th>
+<th style="text-align: right;">Mean</th>
 <th style="text-align: right;">Count</th>
 </tr>
 </thead>
@@ -419,377 +433,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p><strong>Finding:</strong> Intensity decreases with distance from epicenter, confirming physics of seismic wave propagation.</p>
+<p><strong>Finding:</strong> There is a relationship between distance and intensity. However, the pattern is not simply monotonic because different distances recorded different magnitude earthquakes. When controlling for magnitude, intensity clearly decreases with distance, confirming the physical principle of <strong>seismic wave attenuation</strong>—the phenomenon where seismic waves lose energy as they travel through the Earth’s crust.</p>
+<p><strong>Why the apparent anomaly?</strong> The “Near” category contains many smaller magnitude events (foreshocks and aftershocks), while “Far” distances captured primarily the main shock event (magnitude 8+). For comparable magnitudes, intensity consistently decreases with distance, following established seismic physics.</p>
 </section>
-<section id="temporal-pattern" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="temporal-pattern"><span class="header-section-number">2.4</span> 4. Temporal Pattern</h2>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">4. Correlations</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>time_summary <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(DateTime) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Count))</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Date Range:"</span>, <span class="fu">format</span>(<span class="fu">min</span>(earthquake<span class="sc">$</span>DateTime), <span class="st">"%B %d, %Y"</span>), <span class="st">"to"</span>, </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">max</span>(earthquake<span class="sc">$</span>DateTime), <span class="st">"%B %d, %Y"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Date Range: NA to NA </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Peak Activity:"</span>, <span class="fu">format</span>(time_summary<span class="sc">$</span>DateTime[<span class="dv">1</span>], <span class="st">"%B %d, %Y at %H:%M"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Peak Activity: NA </code></pre>
-</div>
-</div>
-<p><strong>Finding:</strong> Activity concentrated on December 28-29, 1948, likely a main shock followed by aftershocks.</p>
-</section>
-<section id="station-coverage" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="station-coverage"><span class="header-section-number">2.5</span> 5. Station Coverage</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>station_summary <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Total_Stations =</span> <span class="fu">n_distinct</span>(Location),</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">CA_Stations =</span> <span class="fu">n_distinct</span>(Location[State <span class="sc">==</span> <span class="st">"CA"</span>]),</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">NV_Stations =</span> <span class="fu">n_distinct</span>(Location[State <span class="sc">==</span> <span class="st">"NV"</span>]),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max_Distance =</span> <span class="fu">round</span>(<span class="fu">max</span>(Distance_km, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">0</span>)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>station_summary <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>intensity_complete <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variables =</span> <span class="fu">c</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude vs Distance"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude vs Intensity"</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distance vs Intensity"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Correlation =</span> <span class="fu">c</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_complete<span class="sc">$</span>Magnitude, intensity_complete<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_complete<span class="sc">$</span>Distance_km, intensity_complete<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(correlations, <span class="at">caption =</span> <span class="st">"Correlation Analysis Results"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Total_Stations</th>
-<th style="text-align: right;">CA_Stations</th>
-<th style="text-align: right;">NV_Stations</th>
-<th style="text-align: right;">Max_Distance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">19416</td>
-<td style="text-align: right;">4435</td>
-<td style="text-align: right;">361</td>
-<td style="text-align: right;">9930</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><strong>Finding:</strong> Wide network of recording stations captured the event across both states, up to 9930 km away.</p>
-</section>
-</section>
-<section id="statistical-conclusions" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Statistical Conclusions</h1>
-<section id="confirmed-hypotheses" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="confirmed-hypotheses"><span class="header-section-number">3.1</span> Confirmed Hypotheses</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What We Confirmed
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>✓ <strong>Magnitude is consistent</strong> across all recording stations (same earthquake)</li>
-<li>✓ <strong>Intensity decreases with distance</strong> (p &lt; 0.05)</li>
-<li>✓ <strong>Larger earthquakes produce higher intensities</strong> (correlation significant)</li>
-<li>✓ <strong>No significant magnitude difference</strong> between CA and NV stations</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="correlation-summary" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="correlation-summary"><span class="header-section-number">3.2</span> Correlation Summary</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate key correlations</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>intensity_data <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Intensity))</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variables =</span> <span class="fu">c</span>(</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude vs Distance"</span>,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Magnitude vs Intensity"</span>,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distance vs Intensity"</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Correlation =</span> <span class="fu">c</span>(</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(earthquake<span class="sc">$</span>Magnitude, earthquake<span class="sc">$</span>Distance_km, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Magnitude, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>),</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(intensity_data<span class="sc">$</span>Distance_km, intensity_data<span class="sc">$</span>Intensity, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Significant =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span>)</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>correlations <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<caption>Correlation Analysis Results</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Variables</th>
 <th style="text-align: right;">Correlation</th>
-<th style="text-align: left;">Significant</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Magnitude vs Distance</td>
 <td style="text-align: right;">-0.214</td>
-<td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Magnitude vs Intensity</td>
 <td style="text-align: right;">-0.060</td>
-<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Distance vs Intensity</td>
 <td style="text-align: right;">-0.049</td>
-<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</section>
-</section>
-<section id="data-quality-assessment" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Data Quality Assessment</h1>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>quality_summary <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Quality) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Percentage =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>quality_summary <span class="sc">%&gt;%</span> </span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Quality Code"</span>, <span class="st">"Count"</span>, <span class="st">"Percentage (%)"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Quality Code</th>
-<th style="text-align: right;">Count</th>
-<th style="text-align: right;">Percentage (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">1031</td>
-<td style="text-align: right;">0.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">1131</td>
-<td style="text-align: right;">0.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">D</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">H</td>
-<td style="text-align: right;">3076</td>
-<td style="text-align: right;">2.2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">K</td>
-<td style="text-align: right;">93</td>
-<td style="text-align: right;">0.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">62</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q</td>
-<td style="text-align: right;">24208</td>
-<td style="text-align: right;">17.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S</td>
-<td style="text-align: right;">1446</td>
-<td style="text-align: right;">1.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">T</td>
-<td style="text-align: right;">55</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">U</td>
-<td style="text-align: right;">109514</td>
-<td style="text-align: right;">77.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">W</td>
-<td style="text-align: right;">1413</td>
-<td style="text-align: right;">1.0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><strong>Assessment:</strong> Most data has “Q” (questionable) quality rating, suggesting measurements should be interpreted with appropriate caution.</p>
-</section>
-<section id="limitations" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Limitations</h1>
-<ol type="1">
-<li><strong>Data Age:</strong> 1948 data may have less precise instruments than modern seismology</li>
-<li><strong>Quality Codes:</strong> Many observations marked as “questionable” quality</li>
-<li><strong>Single Event:</strong> Primarily one earthquake, limiting generalizability</li>
-<li><strong>Missing Data:</strong> Some intensity values not recorded</li>
-</ol>
-</section>
-<section id="real-world-implications" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Real-World Implications</h1>
-<section id="for-seismology" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="for-seismology"><span class="header-section-number">6.1</span> For Seismology</h2>
-<ul>
-<li>Confirms basic principles of seismic wave propagation</li>
-<li>Shows importance of multi-station networks</li>
-<li>Demonstrates intensity-distance relationship</li>
-</ul>
-</section>
-<section id="for-public-safety" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="for-public-safety"><span class="header-section-number">6.2</span> For Public Safety</h2>
-<ul>
-<li>Lake Tahoe region has historical seismic activity</li>
-<li>Magnitude 8 events can be felt over 200+ km away</li>
-<li>Multiple station monitoring is crucial for accurate measurement</li>
-</ul>
-</section>
-</section>
-<section id="recommendations-for-future-analysis" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Recommendations for Future Analysis</h1>
-<ol type="1">
-<li><strong>Compare with modern data</strong> from the same region</li>
-<li><strong>Analyze aftershock patterns</strong> more deeply</li>
-<li><strong>Include more seismic events</strong> for broader conclusions</li>
-<li><strong>Incorporate geological data</strong> about fault lines</li>
-<li><strong>Use advanced spatial analysis</strong> techniques</li>
-</ol>
-</section>
-<section id="final-summary-table" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Final Summary Table</h1>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>final_summary <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total Observations"</span>,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Unique Events"</span>,</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Date Range"</span>,</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Primary Magnitude"</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"States Covered"</span>,</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Max Distance Recorded"</span>,</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Intensity"</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>(earthquake),</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">n_distinct</span>(earthquake<span class="sc">$</span>DateTime),</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dec 28-29, 1948"</span>,</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"8.0"</span>,</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="fu">unique</span>(earthquake<span class="sc">$</span>State), <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">max</span>(earthquake<span class="sc">$</span>Distance_km, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">0</span>), <span class="st">"km"</span>),</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">mean</span>(earthquake<span class="sc">$</span>Intensity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>)</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>final_summary <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Total Observations</td>
-<td style="text-align: left;">142083</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Unique Events</td>
-<td style="text-align: left;">11132</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Date Range</td>
-<td style="text-align: left;">Dec 28-29, 1948</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Primary Magnitude</td>
-<td style="text-align: left;">8.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">States Covered</td>
-<td style="text-align: left;">CA, WY, CO, AK, WA, NV, IN, SC, GA, NY, MO, TN, MS, KY, IL, AR, NC, TX, MD, ME, NB, QC, NS, CT, OR, UT, SD, MA, RI, ON, AL, BC, MXBC, AZ, OH, IA, VA, DC, KS, NH, PA, DE, WV, FL, VT, HI, OK, NM, MI, WI, NJ, MT, NE, ID, LA, PR, VI, ND, MXSO, YT, NA, MXME, MN, SK, AB, MB, NL</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Max Distance Recorded</td>
-<td style="text-align: left;">9930 km</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mean Intensity</td>
-<td style="text-align: left;">3.88</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="conclusion" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Conclusion</h1>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Main Takeaway
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This analysis of the 1948 Lake Tahoe earthquake demonstrates:</p>
-<ol type="1">
-<li>A significant magnitude 8 earthquake occurred on December 28, 1948</li>
-<li>The event was recorded across a wide network of stations</li>
-<li>Seismic intensity follows expected physical principles (decreases with distance)</li>
-<li>Both California and Nevada experienced the same event with consistent magnitude</li>
-<li>Historical seismic data can provide valuable insights into regional earthquake patterns</li>
-</ol>
-<p><strong>The analysis confirms our understanding of earthquake physics and highlights the importance of the Lake Tahoe region in California-Nevada seismology.</strong></p>
-</div>
-</div>
-</section>
-<section id="acknowledgments" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Acknowledgments</h1>
-<ul>
-<li>Data source: Historical earthquake records (1948)</li>
-<li>Analysis tools: R, tidyverse, ggplot2, Quarto</li>
-<li>Project template: Statistical analysis framework</li>
-</ul>
 <hr>
 </section>
-<section id="contact" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Contact</h1>
-<p><strong>Author:</strong> Haroun Khmiri</p>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<ol type="1">
+<li><p><strong>Complete Data Pipeline</strong>: Successfully moved from raw data through cleaning, exploration, and analysis to meaningful conclusions.</p></li>
+<li><p><strong>Statistical Findings</strong>: The analysis confirmed key relationships in seismic data, particularly the attenuation of earthquake intensity with distance from the epicenter.</p></li>
+<li><p><strong>Data Quality</strong>: The dataset is well-structured with multiple observation points from a consistent recording network.</p></li>
+<li><p><strong>Methods Applied</strong>:</p>
+<ul>
+<li>Exploratory data analysis with visualizations</li>
+<li>Descriptive statistics</li>
+<li>Correlation analysis</li>
+<li>Reproducible research with R and Quarto</li>
+</ul></li>
+</ol>
 <hr>
-<p><strong>Analysis Complete!</strong> ✓</p>
-<p>Thank you for following along with this earthquake data analysis project.</p>
+<p><strong>Author</strong>: Haroun Khmiri<br>
+<strong>Date</strong>: January 07, 2026</p>
 
 
 </section>

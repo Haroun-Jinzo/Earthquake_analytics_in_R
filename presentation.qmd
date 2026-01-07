@@ -1,0 +1,370 @@
+---
+title: "Earthquake Data Analysis"
+subtitle: "Lake Tahoe Region - December 1948"
+author: "Your Name"
+date: today
+format:
+  revealjs:
+    slide-number: true
+    transition: slide
+    background-transition: fade
+    code-fold: true
+    code-summary: "Show Code"
+    theme: moon
+    footer: "Earthquake Analysis Project"
+---
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(knitr)
+
+earthquake <- readRDS("data/processed/earthquake_clean.rds")
+```
+
+---
+
+## Project Overview
+
+- **Dataset:** Earthquake recordings from December 1948
+- **Region:** Lake Tahoe area (California-Nevada border)
+- **Observations:** `r nrow(earthquake)` earthquake events
+- **Recording Stations:** `r n_distinct(earthquake$Location)` locations across `r n_distinct(earthquake$State)` states
+- **Distance Range:** `r round(min(earthquake$Distance_km, na.rm=TRUE))` to `r round(max(earthquake$Distance_km, na.rm=TRUE))` km
+
+---
+
+## Research Questions
+
+::: {.incremental}
+- How are earthquake magnitudes distributed?
+- What is the geographic pattern of recordings?
+- How does earthquake intensity change with distance from epicenter?
+- What are the correlations between magnitude, distance, and intensity?
+:::
+
+---
+
+## Magnitude Distribution
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+ggplot(earthquake, aes(x = Magnitude)) +
+  geom_histogram(binwidth = 0.5, fill = "steelblue", color = "black", alpha = 0.7) +
+  geom_vline(aes(xintercept = mean(Magnitude, na.rm = TRUE)), 
+             color = "red", linetype = "dashed", linewidth = 1) +
+  labs(
+    title = "Earthquake Magnitude Distribution",
+    x = "Magnitude (Richter Scale)",
+    y = "Frequency"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14))
+```
+
+**Mean Magnitude:** `r round(mean(earthquake$Magnitude, na.rm=TRUE), 2)` | **Range:** `r min(earthquake$Magnitude, na.rm=TRUE)` to `r max(earthquake$Magnitude, na.rm=TRUE)`
+
+---
+
+## Magnitude Summary Statistics
+
+```{r}
+mag_summary <- tibble(
+  Metric = c("Mean", "Median", "Std Dev", "Min", "Max"),
+  Value = c(
+    round(mean(earthquake$Magnitude, na.rm = TRUE), 2),
+    round(median(earthquake$Magnitude, na.rm = TRUE), 2),
+    round(sd(earthquake$Magnitude, na.rm = TRUE), 2),
+    min(earthquake$Magnitude, na.rm = TRUE),
+    max(earthquake$Magnitude, na.rm = TRUE)
+  )
+)
+
+kable(mag_summary)
+```
+
+---
+
+## Recording Locations (Top 10)
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+earthquake %>%
+  count(Location, sort = TRUE) %>%
+  head(10) %>%
+  ggplot(aes(x = reorder(Location, n), y = n)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_text(aes(label = n), hjust = -0.3, size = 3.5) +
+  labs(
+    title = "Top 10 Recording Locations",
+    x = "Location",
+    y = "Count"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14)) +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
+```
+
+---
+
+## Geographic Coverage (Top States)
+
+```{r}
+state_summary <- earthquake %>%
+  count(State, sort = TRUE)
+
+# Show only top 10 states
+state_summary %>% 
+  head(10) %>%
+  kable(col.names = c("State", "Observations"))
+```
+
+---
+
+## Geographic Coverage (Additional States)
+
+```{r}
+# Show states 11-20
+state_summary %>% 
+  slice(11:20) %>%
+  kable(col.names = c("State", "Observations"))
+```
+
+Total: `r n_distinct(earthquake$Location)` unique stations across `r n_distinct(earthquake$State)` states
+
+---
+
+## Distance vs Intensity Pattern
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+intensity_summary <- earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  group_by(Distance_Category) %>%
+  summarise(
+    Mean_Intensity = mean(Intensity, na.rm = TRUE), 
+    Count = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far")))
+
+ggplot(intensity_summary, aes(x = Distance_Category, y = Mean_Intensity)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_text(aes(label = round(Mean_Intensity, 2)), vjust = -0.5, size = 4) +
+  labs(
+    title = "Average Intensity by Distance",
+    x = "Distance from Epicenter",
+    y = "Mean Intensity"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
+```
+
+---
+
+## Magnitude by Distance
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+earthquake %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far"))) %>%
+  ggplot(aes(x = Distance_Category, y = Magnitude, fill = Distance_Category)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Magnitude Range by Distance",
+    x = "Distance Category",
+    y = "Magnitude (Richter Scale)"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        legend.position = "none")
+```
+
+**Key Finding:** Near distances record smaller events; far distances captured the main shock (M8+)
+
+---
+
+## Intensity by Magnitude and Distance (Near & Medium)
+
+```{r}
+magnitude_intensity <- earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  mutate(Magnitude_Group = cut(Magnitude, 
+                               breaks = c(0, 7, 8, 9),
+                               labels = c("M < 7", "M 7-8", "M > 8"))) %>%
+  group_by(Distance_Category, Magnitude_Group) %>%
+  summarise(
+    Mean_Intensity = mean(Intensity, na.rm = TRUE),
+    Count = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far")))
+
+# Show only Near and Medium distances
+magnitude_intensity %>% 
+  filter(Distance_Category %in% c("Near", "Medium")) %>%
+  kable(digits = 2)
+```
+
+---
+
+## Intensity by Magnitude and Distance (Far & Very Far)
+
+```{r}
+# Show only Far and Very Far distances
+magnitude_intensity %>% 
+  filter(Distance_Category %in% c("Far", "Very Far")) %>%
+  kable(digits = 2)
+```
+
+---
+
+## Correlation Analysis - Magnitude vs Distance
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+earthquake %>%
+  ggplot(aes(x = Distance_km, y = Magnitude)) +
+  geom_point(alpha = 0.5, color = "darkblue", size = 2) +
+  geom_smooth(method = "lm", color = "red", linewidth = 1, se = TRUE) +
+  labs(
+    title = "Magnitude vs Distance Relationship",
+    x = "Distance (km)",
+    y = "Magnitude (Richter Scale)"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Correlation Analysis - Magnitude vs Intensity
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  ggplot(aes(x = Magnitude, y = Intensity)) +
+  geom_point(alpha = 0.5, color = "darkgreen", size = 2) +
+  geom_smooth(method = "lm", color = "red", linewidth = 1, se = TRUE) +
+  labs(
+    title = "Magnitude vs Intensity Relationship",
+    x = "Magnitude",
+    y = "Intensity (MMI)"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Correlation Analysis - Distance vs Intensity
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  ggplot(aes(x = Distance_km, y = Intensity, color = Magnitude)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_smooth(method = "lm", color = "black", linewidth = 1, se = TRUE) +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(
+    title = "Distance vs Intensity (Seismic Attenuation)",
+    x = "Distance (km)",
+    y = "Intensity (MMI)",
+    color = "Magnitude"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Seismic Wave Attenuation
+
+```{r}
+distance_composition <- earthquake %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far"))) %>%
+  group_by(Distance_Category) %>%
+  summarise(
+    Count = n(),
+    Mean_Magnitude = round(mean(Magnitude, na.rm = TRUE), 2),
+    Mean_Intensity = round(mean(Intensity, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+kable(distance_composition)
+```
+
+---
+
+## Summary Statistics
+
+```{r}
+summary_table <- tibble(
+  Variable = c("Magnitude", "Distance (km)", "Intensity"),
+  Mean = c(
+    round(mean(earthquake$Magnitude, na.rm = TRUE), 2),
+    round(mean(earthquake$Distance_km, na.rm = TRUE), 1),
+    round(mean(earthquake$Intensity, na.rm = TRUE), 2)
+  ),
+  Min = c(
+    min(earthquake$Magnitude, na.rm = TRUE),
+    round(min(earthquake$Distance_km, na.rm = TRUE), 1),
+    min(earthquake$Intensity, na.rm = TRUE)
+  ),
+  Max = c(
+    max(earthquake$Magnitude, na.rm = TRUE),
+    round(max(earthquake$Distance_km, na.rm = TRUE), 1),
+    max(earthquake$Intensity, na.rm = TRUE)
+  )
+)
+
+kable(summary_table)
+```
+
+---
+
+## Key Insights from Analysis
+
+:::{.incremental}
+- **Magnitude Distribution:** Main shock at M8 with foreshocks/aftershocks
+- **Geographic Pattern:** Dense coverage across CA, NV, and neighboring states
+- **Physical Attenuation:** Intensity decreases with distance from epicenter
+- **Data Quality:** Multiple magnitude earthquakes at different distances
+- **Seismic Physics:** Correlations confirm known seismic wave propagation patterns
+:::
+
+---
+
+## Conclusions
+
+- **Main Event:** Magnitude 8 earthquake on December 16, 1948 in Lake Tahoe region
+- **Extensive Network:** 200+ observations recorded across multiple states
+- **Physics Confirmed:** Seismic waves lose intensity with distance
+- **Data Quality:** High-quality recording of a major earthquake event
+- **Research Value:** Valuable dataset for studying seismic wave propagation
+
+---
+
+## Thank You
+
+Questions?

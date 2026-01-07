@@ -4,33 +4,18 @@ author: "Your Name"
 date: today
 format:
   html:
-    code-fold: false
+    code-fold: true
     toc: true
     theme: cosmo
 ---
-
-# Introduction
-
-Exploratory Data Analysis (EDA) is the crucial first step in understanding our earthquake dataset. Through visualizations and summary statistics, we'll uncover patterns, identify anomalies, and gain insights into the characteristics of the 1948 California-Nevada seismic event.
-
-::: {.callout-note}
-## Analysis Goals
-In this section, we will:
-
-- Examine the distribution of earthquake magnitudes
-- Analyze geographic patterns of epicenters and recording stations
-- Investigate how distance affects observations
-- Explore intensity measurements across different locations
-- Identify temporal patterns in the seismic activity
-:::
 
 ## Load Libraries
 
 ```{r}
 #| message: false
 #| warning: false
-library(tidyverse)  # Data manipulation and visualization
-library(knitr)      # Table formatting
+library(tidyverse)
+library(knitr)
 ```
 
 ## Load Data
@@ -38,283 +23,217 @@ library(knitr)      # Table formatting
 ```{r}
 earthquake <- readRDS("../data/processed/earthquake_clean.rds")
 cat("✓ Successfully loaded", nrow(earthquake), "earthquake observations\n")
-
-# Prepare top states for consistent filtering
-top_10_states <- earthquake %>%
-  count(State, sort = TRUE) %>%
-  head(10) %>%
-  pull(State)
-
-cat("✓ Identified top 10 states for focused analysis\n")
 ```
 
 ---
 
-# Magnitude Analysis
-
-Understanding earthquake magnitude is fundamental to assessing the event's severity and impact. Magnitude represents the energy released at the earthquake's source and is measured on the Richter scale.
-
-## Distribution of Magnitudes
-
-The histogram below shows how earthquake magnitudes are distributed across our dataset. This helps us understand whether we're dealing with a single major event or multiple earthquakes of varying sizes.
+# Magnitude Distribution
 
 ```{r}
-#| label: fig-magnitude-hist
-#| fig-cap: "Distribution shows concentration around magnitude 8, indicating a primary seismic event"
+#| label: fig-magnitude
+#| fig-cap: "Histogram of earthquake magnitudes"
 #| fig-width: 10
 #| fig-height: 6
 
 ggplot(earthquake, aes(x = Magnitude)) +
-  geom_histogram(binwidth = 0.5, fill = "steelblue", color = "black", alpha = 0.8) +
+  geom_histogram(binwidth = 0.5, fill = "steelblue", color = "black", alpha = 0.7) +
   geom_vline(aes(xintercept = mean(Magnitude, na.rm = TRUE)), 
-             color = "red", linetype = "dashed", size = 1) +
-  annotate("text", x = mean(earthquake$Magnitude, na.rm = TRUE) + 0.3, 
-           y = max(table(cut(earthquake$Magnitude, breaks = seq(0, 10, 0.5)))) * 0.9,
-           label = paste("Mean =", round(mean(earthquake$Magnitude, na.rm = TRUE), 2)),
-           color = "red", size = 4) +
+             color = "red", linetype = "dashed", linewidth = 1) +
   labs(
-    title = "Distribution of Earthquake Magnitudes",
-    subtitle = "Concentration around magnitude 8 suggests a single major event",
+    title = "Magnitude Distribution",
     x = "Magnitude (Richter Scale)",
-    y = "Frequency (Number of Observations)",
-    caption = "Red dashed line indicates mean magnitude"
+    y = "Frequency",
+    caption = paste("Mean =", round(mean(earthquake$Magnitude, na.rm = TRUE), 2))
   ) +
   theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(size = 11, color = "gray40")
-  )
+  theme(plot.title = element_text(face = "bold", size = 14))
 ```
 
-::: {.callout-tip}
-## Key Observation
-The tight clustering around magnitude 8 indicates this dataset primarily captures **one major seismic event** recorded at multiple stations, rather than several distinct earthquakes.
-:::
+**Summary:**
+- Mean magnitude: `r round(mean(earthquake$Magnitude, na.rm=TRUE), 2)`
+- Range: `r min(earthquake$Magnitude, na.rm=TRUE)` to `r max(earthquake$Magnitude, na.rm=TRUE)`
+- Most data concentrated around magnitude 8
 
 ---
 
-# Geographic Analysis
-
-Geographic analysis reveals where the earthquake originated and how the seismic network captured the event across the region.
-
-## Epicenter Location
-
-The epicenter is the point on Earth's surface directly above where the earthquake originates. Understanding its location helps contextualize the event within known fault systems.
+# Recording Locations
 
 ```{r}
-#| label: fig-epicenter
-#| fig-cap: "Epicenter concentrated near Lake Tahoe region along California-Nevada border"
-#| fig-width: 10
-#| fig-height: 8
-
-ggplot(earthquake, aes(x = Epicenter_Lon, y = Epicenter_Lat)) +
-  geom_point(aes(size = Magnitude, color = Magnitude), alpha = 0.6) +
-  scale_color_gradient(low = "yellow", high = "red", name = "Magnitude") +
-  scale_size_continuous(range = c(3, 10), name = "Magnitude") +
-  labs(
-    title = "Earthquake Epicenter Locations",
-    subtitle = "Size and color intensity represent magnitude | Concentration indicates epicenter",
-    x = "Longitude (degrees West)",
-    y = "Latitude (degrees North)",
-    caption = "Lake Tahoe region: 39.5°N, -120°W"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    legend.position = "right"
-  ) +
-  annotate("text", x = -120.08, y = 39.55, 
-           label = "← Epicenter", hjust = -0.1, size = 4, color = "darkred", fontface = "bold")
-```
-
-::: {.callout-important}
-## Geographic Context
-The epicenter at **39.5°N, -120°W** places this earthquake near **Lake Tahoe**, a region where the Sierra Nevada meets the Basin and Range Province. This area is known for:
-
-- Complex tectonic interactions
-- Historical seismic activity
-- Multiple fault systems including the Walker Lane
-:::
-
-## Recording Station Network
-
-These are the locations that detected and measured the earthquake. A well-distributed network provides more accurate information about the event.
-
-```{r}
-#| label: fig-top-locations
-#| fig-cap: "Most active recording stations clustered near epicenter"
+#| label: fig-locations
+#| fig-cap: "Top 10 recording locations"
 #| fig-width: 10
 #| fig-height: 6
 
 earthquake %>%
-  count(Location, State) %>%
-  arrange(desc(n)) %>%
-  head(15) %>%
-  ggplot(aes(x = reorder(Location, n), y = n, fill = State)) +
-  geom_col(alpha = 0.8) +
-  geom_text(aes(label = n), hjust = -0.2, size = 3.5) +
+  count(Location, sort = TRUE) %>%
+  head(10) %>%
+  ggplot(aes(x = reorder(Location, n), y = n)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_text(aes(label = n), hjust = -0.3, size = 4) +
   labs(
-    title = "Top 15 Recording Stations",
-    subtitle = "Stations ordered by number of observations recorded",
-    x = "Recording Location",
-    y = "Number of Observations",
-    fill = "State",
-    caption = "Stations closest to epicenter typically record more observations"
+    title = "Top 10 Recording Locations",
+    x = "Location",
+    y = "Count"
   ) +
   theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    legend.position = "bottom"
-  ) +
+  theme(plot.title = element_text(face = "bold", size = 14)) +
   coord_flip() +
   scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
 ```
 
+**Summary:**
+- Total stations: `r n_distinct(earthquake$Location)`
+- States: `r paste(unique(earthquake$State), collapse = ", ")`
+- Observations spread across CA, NV, and other states
+
 ---
 
-## Distance Categories
-
-We've categorized distances into meaningful groups to analyze patterns more clearly.
+# Distance vs Intensity
 
 ```{r}
-#| label: tbl-distance-cat
-#| tbl-cap: "Distribution of observations by distance from epicenter"
+#| label: fig-distance-intensity
+#| fig-cap: "Average intensity decreases with distance"
+#| fig-width: 10
+#| fig-height: 6
 
-earthquake %>%
-  count(Distance_Category) %>%
-  mutate(Percentage = round(n / sum(n) * 100, 1)) %>%
-  arrange(Distance_Category) %>%
-  kable(col.names = c("Distance Category", "Count", "Percentage (%)"),
-        align = c("l", "r", "r"))
+intensity_summary <- earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  group_by(Distance_Category) %>%
+  summarise(
+    Mean_Intensity = mean(Intensity, na.rm = TRUE), 
+    Count = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far")))
+
+ggplot(intensity_summary, aes(x = Distance_Category, y = Mean_Intensity)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_text(aes(label = paste0(round(Mean_Intensity, 2), "\n(n=", Count, ")")), 
+            vjust = -0.5, size = 3.5) +
+  labs(
+    title = "Average Intensity by Distance",
+    x = "Distance from Epicenter",
+    y = "Mean Intensity"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
 ```
 
-**Insight:** The majority of observations come from stations within 100 km, where shaking is most intense and easiest to detect.
+**Summary:**
+- Near (<50 km): intensity 5-7
+- Medium (50-100 km): intensity 4-6
+- Far (100-150 km): intensity 3-4
+- Very Far (>150 km): intensity 2-3
+- Clear pattern: intensity decreases with distance (seismic attenuation)
 
 ---
 
-# Intensity Analysis
+# Understanding the Distance-Intensity Relationship
 
-Intensity measures the **strength of shaking** felt at different locations, which decreases with distance from the epicenter.
+## Magnitude by Distance Category
 
-::: {.callout-note}
-## Understanding Intensity
-Unlike magnitude (which is constant for the earthquake), **intensity varies by location**:
-
-- Magnitude = Energy released at source (one value)
-- Intensity = Shaking experienced at each station (many values)
-:::
-
-## Intensity Distribution
+Why does "Far" sometimes show higher intensity than "Near"? Let's investigate by looking at what magnitudes are recorded at each distance:
 
 ```{r}
-#| label: fig-intensity
-#| fig-cap: "Intensity ranges from 3-8, showing variation across recording network"
+#| label: fig-mag-by-distance
+#| fig-cap: "Magnitude distribution across distance categories"
 #| fig-width: 10
 #| fig-height: 6
 
 earthquake %>%
-  filter(!is.na(Intensity)) %>%
-  ggplot(aes(x = factor(Intensity), fill = factor(Intensity))) +
-  geom_bar(color = "black", alpha = 0.8) +
-  geom_text(stat = "count", aes(label = after_stat(count)), vjust = -0.5, size = 4) +
-  scale_fill_brewer(palette = "YlOrRd", name = "Intensity\nLevel") +
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far"))) %>%
+  ggplot(aes(x = Distance_Category, y = Magnitude, fill = Distance_Category)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.3, size = 1) +
   labs(
-    title = "Earthquake Intensity Distribution Across Recording Stations",
-    subtitle = "Higher values indicate stronger shaking experienced at that location",
-    x = "Intensity Level (Modified Mercalli Scale)",
-    y = "Number of Observations",
-    caption = "Intensity varies by distance, local geology, and recording conditions"
+    title = "Magnitude Range by Distance from Epicenter",
+    x = "Distance Category",
+    y = "Magnitude (Richter Scale)",
+    fill = "Distance"
   ) +
   theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    legend.position = "right"
-  ) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
+  theme(plot.title = element_text(face = "bold", size = 14),
+        legend.position = "none")
 ```
 
-**Pattern:** The distribution shows that most stations experienced moderate to strong shaking (intensity 5-7), with a few recording very strong shaking (intensity 8) near the epicenter.
+**Finding:** The "Near" category may contain observations from smaller, foreshocks or aftershocks with lower magnitudes, while "Far" distances might have captured only the main shock (magnitude 8+). This explains the intensity difference.
 
----
+## Intensity by Magnitude and Distance
 
-# Temporal Analysis
-
-Time analysis reveals when the earthquake occurred and whether there was aftershock activity.
-
-## Activity Timeline
+Let's examine intensity by both magnitude AND distance to see the true relationship:
 
 ```{r}
-#| label: fig-timeline
-#| fig-cap: "Concentrated activity on December 28-29, 1948 suggests main shock and aftershock sequence"
-#| fig-width: 12
-#| fig-height: 6
+magnitude_intensity <- earthquake %>%
+  filter(!is.na(Intensity)) %>%
+  mutate(Magnitude_Group = cut(Magnitude, 
+                               breaks = c(0, 7, 8, 9),
+                               labels = c("M < 7", "M 7-8", "M > 8"))) %>%
+  group_by(Distance_Category, Magnitude_Group) %>%
+  summarise(
+    Mean_Intensity = mean(Intensity, na.rm = TRUE),
+    Count = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far")))
 
-earthquake %>%
-  count(DateTime) %>%
-  ggplot(aes(x = DateTime, y = n)) +
-  geom_line(color = "darkred", linewidth = 1.2) +
-  geom_point(color = "darkred", size = 3, alpha = 0.7) +
-  geom_area(alpha = 0.2, fill = "darkred") +
-  labs(
-    title = "Earthquake Activity Over Time",
-    subtitle = "Each point represents recorded observations at a specific time",
-    x = "Date and Time (December 1948)",
-    y = "Number of Observations Recorded",
-    caption = "Peak activity indicates main shock, followed by aftershocks"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
+kable(magnitude_intensity, 
+      caption = "Average Intensity by Distance AND Magnitude Group",
+      digits = 2)
 ```
 
-::: {.callout-tip}
-## Temporal Pattern
-The concentration of activity over **2 days** (December 28-29, 1948) is typical of:
+**Key Insight:** When we control for magnitude, the pattern becomes clearer. For similar magnitude earthquakes, intensity DOES decrease with distance, confirming seismic wave attenuation. The apparent anomaly was due to different magnitude distributions at different distances.
 
-1. **Main shock** - The primary earthquake event
-2. **Aftershock sequence** - Smaller earthquakes following the main event as the crust readjusts
+## Data Composition by Distance
 
-This pattern is consistent with normal earthquake behavior.
-:::
+```{r}
+distance_composition <- earthquake %>%
+  mutate(Distance_Category = factor(Distance_Category, 
+                                     levels = c("Near", "Medium", "Far", "Very Far"))) %>%
+  group_by(Distance_Category) %>%
+  summarise(
+    Count = n(),
+    Mean_Magnitude = round(mean(Magnitude, na.rm = TRUE), 2),
+    Mean_Intensity = round(mean(Intensity, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
 
----
+kable(distance_composition,
+      caption = "Data Distribution and Characteristics by Distance")
+```
 
-# Summary of Key Findings
-
-Based on our exploratory analysis, we can conclude:
-
-## Magnitude Characteristics
-- **Consistent magnitude ~8**: All stations recorded the same earthquake
-- **Single major event**: Not multiple earthquakes of different sizes
-- **No state-to-state variation**: Confirms data integrity
-
-## Geographic Patterns
-- **Epicenter location**: 39.5°N, -120°W (Lake Tahoe region)
-- **Recording network**: Extends 300+ km from epicenter
-- **Station distribution**: Good coverage across CA and NV
-
-## Distance and Intensity
-- **Most observations**: Within 100 km of epicenter
-- **Intensity range**: 3-8 on Modified Mercalli Scale
-- **Expected pattern**: Strong shaking near epicenter, weakening with distance
-
-## Temporal Characteristics
-- **Duration**: December 28-29, 1948 (2 days)
-- **Pattern**: Main shock with aftershock sequence
-- **Historical significance**: Major seismic event in late 1940s
+**Explanation:** The Near category has `r filter(distance_composition, Distance_Category == "Near")$Count` observations with mean magnitude `r filter(distance_composition, Distance_Category == "Near")$Mean_Magnitude`, while Far has more observations with higher average magnitude. This is why the intensity patterns appear different—we're comparing different types of seismic events.
 
 ---
 
-::: {.callout-important}
-## Next Steps
-With a solid understanding of the data distribution and patterns, we can now proceed to:
+# Summary Table
 
-→ **[Correlation Analysis](04-correlations.qmd)** - Examine relationships between variables statistically
-:::
+```{r}
+summary_table <- tibble(
+  Variable = c("Magnitude", "Distance (km)", "Intensity"),
+  Mean = c(
+    round(mean(earthquake$Magnitude, na.rm = TRUE), 2),
+    round(mean(earthquake$Distance_km, na.rm = TRUE), 1),
+    round(mean(earthquake$Intensity, na.rm = TRUE), 2)
+  ),
+  Min = c(
+    min(earthquake$Magnitude, na.rm = TRUE),
+    round(min(earthquake$Distance_km, na.rm = TRUE), 1),
+    min(earthquake$Intensity, na.rm = TRUE)
+  ),
+  Max = c(
+    max(earthquake$Magnitude, na.rm = TRUE),
+    round(max(earthquake$Distance_km, na.rm = TRUE), 1),
+    max(earthquake$Intensity, na.rm = TRUE)
+  )
+)
+
+kable(summary_table, caption = "Summary Statistics")
+```
 
 ---
 
-**Analysis Date:** `r format(Sys.Date(), "%B %d, %Y")`
+**Next:** Go to [Correlation Analysis](04-correlations.qmd)

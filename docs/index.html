@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2026-01-04">
+<meta name="author" content="Khmiri Haroun">
+<meta name="dcterms.date" content="2026-01-07">
 
-<title>Earthquake Data Analysis – Elements of Data Analysis and Statistics - Templates</title>
+<title>Earthquake Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,9 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Elements of Data Analysis and Statistics - Templates
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Earthquake Data Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Elements of Data Analysis and Statistics - Templates</a> 
+      <a href="./">Earthquake Data Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -111,32 +109,52 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Earthquake Data Analysis</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Labs</span></a>
+ <span class="menu-text">📊 Analysis Pipeline</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp1.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./qmd/01-data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📥 Data Import</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp2.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./qmd/02-data-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧹 Data Cleaning</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./qmd/03-exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔍 Exploratory Analysis</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">qmd/temp4.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./qmd/04-correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔗 Correlation Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qmd/07-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">✅ Conclusions</span></a>
+  </div>
+</li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Projects</span></span>
   </li>
     </ul>
     </div>
@@ -148,16 +166,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a>
   <ul class="collapse">
-  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">1.1</span> Research Questions</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">1.2</span> Dataset</a></li>
-  <li><a href="#analysis-steps" id="toc-analysis-steps" class="nav-link" data-scroll-target="#analysis-steps"><span class="header-section-number">1.3</span> Analysis Steps</a></li>
-  <li><a href="#key-findings-preview" id="toc-key-findings-preview" class="nav-link" data-scroll-target="#key-findings-preview"><span class="header-section-number">1.4</span> Key Findings Preview</a></li>
-  <li><a href="#about" id="toc-about" class="nav-link" data-scroll-target="#about"><span class="header-section-number">1.5</span> About</a></li>
+  <li><a href="#project-details" id="toc-project-details" class="nav-link" data-scroll-target="#project-details">Project Details</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  <li><a href="#analysis-workflow" id="toc-analysis-workflow" class="nav-link" data-scroll-target="#analysis-workflow">Analysis Workflow</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
+  <li><a href="#tools-used" id="toc-tools-used" class="nav-link" data-scroll-target="#tools-used">Tools Used</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -174,14 +192,14 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Khmiri Haroun </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 4, 2026</p>
+      <p class="date">January 7, 2026</p>
     </div>
   </div>
   
@@ -193,11 +211,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
-<p>This project analyzes earthquake data from December 1948 in the California-Nevada region.</p>
-<section id="research-questions" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">1.1</span> Research Questions</h2>
+<section id="project-overview" class="level1">
+<h1>Project Overview</h1>
+<p>This project analyzes earthquake data from December 1948 in the California-Nevada region using R and Quarto.</p>
+<section id="project-details" class="level2">
+<h2 class="anchored" data-anchor-id="project-details">Project Details</h2>
+<ul>
+<li><strong>Title</strong>: Earthquake Data Analysis</li>
+<li><strong>Student</strong>: Khmiri Haroun</li>
+<li><strong>Course</strong>: Statistical Analysis with R</li>
+<li><strong>Professor</strong>: MR. Khmaies Abdallah</li>
+<li><strong>Institution</strong>: Ecole Polytechnique Sousse</li>
+<li><strong>Data Period</strong>: December 1948</li>
+</ul>
+</section>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
 <ol type="1">
 <li>What is the magnitude distribution of earthquakes?</li>
 <li>How does distance affect intensity?</li>
@@ -205,43 +234,75 @@ ul.task-list li input[type="checkbox"] {
 <li>What correlations exist between variables?</li>
 </ol>
 </section>
-<section id="dataset" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="dataset"><span class="header-section-number">1.2</span> Dataset</h2>
-<p>The dataset contains earthquake observations including:</p>
-<ul>
-<li>Temporal data (date and time)</li>
-<li>Magnitude measurements</li>
-<li>Geographic coordinates (epicenter and stations)</li>
-<li>Distance from epicenter</li>
-<li>Intensity at recording stations</li>
-<li>Location information (states and cities)</li>
-</ul>
-</section>
-<section id="analysis-steps" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="analysis-steps"><span class="header-section-number">1.3</span> Analysis Steps</h2>
+<section id="analysis-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-workflow">Analysis Workflow</h2>
 <ol type="1">
+<li><a href="./qmd/01-data-import.html">Data Import</a> - Load raw data</li>
+<li><a href="./qmd/02-data-cleaning.html">Data Cleaning</a> - Prepare data</li>
 <li><a href="./qmd/03-exploratory.html">Exploratory Analysis</a> - Visualize patterns</li>
 <li><a href="./qmd/04-correlations.html">Correlation Analysis</a> - Find relationships</li>
-<li><a href="./qmd/06-visualizations.html">Advanced Visualizations</a> - Create detailed plots</li>
-<li><a href="./qmd/07-conclusions.html">Conclusions</a> - Summary and findings</li>
+<li><a href="./qmd/07-conclusions.html">Conclusions</a> - Summary of findings</li>
 </ol>
 </section>
-<section id="key-findings-preview" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="key-findings-preview"><span class="header-section-number">1.4</span> Key Findings Preview</h2>
-<ul>
-<li>Epicenter located near Lake Tahoe (CA/NV border)</li>
-<li>Magnitude 8 earthquake recorded at multiple stations</li>
-<li>Intensity decreases with distance (as expected)</li>
-<li>Activity concentrated over December 28-29, 1948</li>
-</ul>
+<section id="key-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'knitr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total observations: 142083 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean magnitude: 7.41 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unique stations: 19416 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max distance: 9930 km</code></pre>
+</div>
+</div>
 </section>
-<section id="about" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="about"><span class="header-section-number">1.5</span> About</h2>
-<p><strong>Author:</strong> Your Name<br>
-<strong>Course:</strong> Statistical Analysis with R<br>
-<strong>Tools:</strong> R, Quarto, tidyverse</p>
-<hr>
-<p><em>Click any link above to view the analysis!</em></p>
+<section id="tools-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-used">Tools Used</h2>
+<ul>
+<li><strong>R</strong>: Programming language</li>
+<li><strong>tidyverse</strong>: Data manipulation</li>
+<li><strong>ggplot2</strong>: Visualization</li>
+<li><strong>Quarto</strong>: Report generation<br>
+<em>For questions or feedback, please contact the author.</em></li>
+</ul>
 
 
 </section>

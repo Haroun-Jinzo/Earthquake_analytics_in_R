@@ -2,32 +2,38 @@ project:
   type: website
   output-dir: docs
   render: 
-    - "*.qmd"
+    - "index.qmd"
     - "qmd/*.qmd"
+    - "presentation.qmd"
   
 
 website:
-  title: "Elements of Data Analysis and Statistics - Templates"
+  title: "Earthquake Data Analysis"
   sidebar:
     style: "docked"
     search: true
     contents:
-      - section: Labs
+      - index.qmd
+      - section: "📊 Analysis Pipeline"
         contents:
-          - qmd/temp1.qmd
-          - qmd/temp2.qmd
-          - qmd/temp3.qmd
-          - qmd/temp4.qmd
+          - text: "📥 Data Import"
+            file: qmd/01-data-import.qmd
+          - text: "🧹 Data Cleaning"
+            file: qmd/02-data-cleaning.qmd
+          - text: "🔍 Exploratory Analysis"
+            file: qmd/03-exploratory.qmd
+          - text: "🔗 Correlation Analysis"
+            file: qmd/04-correlations.qmd
+          - text: "✅ Conclusions"
+            file: qmd/07-conclusions.qmd
           
-      - section: Projects
-      
 format:
   html:
     theme: cosmo
     css: thpe.css
     toc: true
-    number-sections: true
-    #embed-resources: true
+    number-sections: false
+    embed-resources: false
   pdf:
     toc: false
     number-sections: true
@@ -37,6 +43,7 @@ format:
       - top=20mm
       - left=25mm
       - bottom=25mm
+
 bibliography: bib.bib
 csl: apa.csl
 

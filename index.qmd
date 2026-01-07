@@ -1,12 +1,26 @@
 ---
 title: "Earthquake Data Analysis"
-author: "Your Name"
+author: "Khmiri Haroun"
 date: today
+format:
+  html:
+    code-fold: true
+    toc: true
+    theme: cosmo
 ---
 
-# Overview
+# Project Overview
 
-This project analyzes earthquake data from December 1948 in the California-Nevada region.
+This project analyzes earthquake data from December 1948 in the California-Nevada region using R and Quarto.
+
+## Project Details
+
+- **Title**: Earthquake Data Analysis
+- **Student**: Khmiri Haroun
+- **Course**: Statistical Analysis with R
+- **Professor**: Dr. Khmaies Abdallah
+- **Institution**: Ecole Polytechnique Sousse
+- **Data Period**: 19th and 20th century
 
 ## Research Questions
 
@@ -15,37 +29,34 @@ This project analyzes earthquake data from December 1948 in the California-Nevad
 3. Are there geographic patterns in the data?
 4. What correlations exist between variables?
 
-## Dataset
+## Analysis Workflow
 
-The dataset contains earthquake observations including:
+1. [Data Import](qmd/01-data-import.qmd) - Load raw data
+2. [Data Cleaning](qmd/02-data-cleaning.qmd) - Prepare data
+3. [Exploratory Analysis](qmd/03-exploratory.qmd) - Visualize patterns
+4. [Correlation Analysis](qmd/04-correlations.qmd) - Find relationships
+5. [Conclusions](qmd/07-conclusions.qmd) - Summary of findings
 
-- Temporal data (date and time)
-- Magnitude measurements
-- Geographic coordinates (epicenter and stations)
-- Distance from epicenter
-- Intensity at recording stations
-- Location information (states and cities)
+## Key Findings
 
-## Analysis Steps
+```{r}
+#| echo: false
+#| message: false
 
-1. [Exploratory Analysis](qmd/03-exploratory.qmd) - Visualize patterns
-2. [Correlation Analysis](qmd/04-correlations.qmd) - Find relationships
-3. [Advanced Visualizations](qmd/06-visualizations.qmd) - Create detailed plots
-5. [Conclusions](qmd/07-conclusions.qmd) - Summary and findings
+library(tidyverse)
+library(knitr)
 
-## Key Findings Preview
+earthquake <- readRDS("data/processed/earthquake_clean.rds")
 
-- Epicenter located near Lake Tahoe (CA/NV border)
-- Magnitude 8 earthquake recorded at multiple stations
-- Intensity decreases with distance (as expected)
-- Activity concentrated over December 28-29, 1948
+cat("Total observations:", nrow(earthquake), "\n")
+cat("Mean magnitude:", round(mean(earthquake$Magnitude, na.rm=TRUE), 2), "\n")
+cat("Unique stations:", n_distinct(earthquake$Location), "\n")
+cat("Max distance:", round(max(earthquake$Distance_km, na.rm=TRUE)), "km\n")
+```
 
-## About
+## Tools Used
 
-**Author:** Your Name  
-**Course:** Statistical Analysis with R  
-**Tools:** R, Quarto, tidyverse
-
----
-
-*Click any link above to view the analysis!*
+- **R**: Programming language
+- **tidyverse**: Data manipulation
+- **ggplot2**: Visualization
+- **Quarto**: Report generation  

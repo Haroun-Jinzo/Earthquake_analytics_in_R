@@ -10,11 +10,7 @@ format:
 
 # Introduction
 
-Correlation analysis helps us understand **relationships between variables**. We'll test if our earthquake data follows expected physical principles:
-
-- Magnitude should be **constant** (same earthquake everywhere)
-- Higher magnitude should produce **higher intensity** (more energy = stronger shaking)
-- Intensity should **decrease with distance** (energy dissipates)
+Correlation analysis helps us understand **relationships between variables** in seismic data for the 1983 earthquake event. By focusing on a single event, we eliminate the confounding effect of mixing different magnitude earthquakes.
 
 ## Load Libraries
 
@@ -32,152 +28,259 @@ earthquake <- readRDS("../data/processed/earthquake_clean.rds")
 cat("✓ Loaded", nrow(earthquake), "observations\n")
 ```
 
+## Diagnostic: Check Data Quality
+
+```{r}
+# Check the full dataset first
+cat("\n=== FULL DATASET DIAGNOSTICS ===\n")
+cat("Total observations:", nrow(earthquake), "\n")
+cat("Magnitude range:", min(earthquake$Magnitude, na.rm = TRUE), "to", 
+    max(earthquake$Magnitude, na.rm = TRUE), "\n")
+cat("Magnitude variance:", round(var(earthquake$Magnitude, na.rm = TRUE), 3), "\n")
+cat("Non-NA Intensity values:", sum(!is.na(earthquake$Intensity)), "\n")
+cat("Intensity range:", min(earthquake$Intensity, na.rm = TRUE), "to", 
+    max(earthquake$Intensity, na.rm = TRUE), "\n")
+```
+
+## Filter for 1983 Event
+
+```{r}
+# Filter for 1983 event only
+earthquake_1983 <- earthquake %>%
+  mutate(Year = format(DateTime, "%Y")) %>%
+  filter(Year == "1983")
+
+cat("\n=== 1983 EVENT DIAGNOSTICS ===\n")
+cat("Filtered to 1983 event:", nrow(earthquake_1983), "observations\n")
+
+if(nrow(earthquake_1983) == 0) {
+  stop("No data found for 1983. Please check your dataset.")
+}
+
+# Check magnitude variation in 1983
+cat("\nMagnitude statistics for 1983:\n")
+cat("  Range:", min(earthquake_1983$Magnitude, na.rm = TRUE), "to", 
+    max(earthquake_1983$Magnitude, na.rm = TRUE), "\n")
+cat("  Mean:", round(mean(earthquake_1983$Magnitude, na.rm = TRUE), 2), "\n")
+cat("  Variance:", round(var(earthquake_1983$Magnitude, na.rm = TRUE), 4), "\n")
+
+# Check intensity data
+cat("\nIntensity statistics for 1983:\n")
+cat("  Non-NA values:", sum(!is.na(earthquake_1983$Intensity)), "\n")
+cat("  Range:", min(earthquake_1983$Intensity, na.rm = TRUE), "to", 
+    max(earthquake_1983$Intensity, na.rm = TRUE), "\n")
+
+# WARNING if magnitude has no variation
+if(var(earthquake_1983$Magnitude, na.rm = TRUE) < 0.01) {
+  cat("\n⚠️ WARNING: Magnitude has very little variation in 1983!\n")
+  cat("   This is expected for a single earthquake event.\n")
+  cat("   Magnitude-Intensity correlation will be weak/undefined.\n")
+  cat("   💡 Solution: Use the FULL dataset for Magnitude-Intensity correlation.\n")
+}
+```
+
 ---
 
-# Correlation Matrix Overview
-
-First, let's see all relationships at once:
+# Correlation Matrix for 1983 Event
 
 ```{r}
 #| label: fig-corrplot
-#| fig-cap: "Red = positive correlation, Blue = negative correlation, Bigger circles = stronger relationship"
+#| fig-cap: "Correlation matrix for the 1983 earthquake event"
 #| fig-width: 9
 #| fig-height: 9
 
-# Select numeric variables
-numeric_data <- earthquake %>%
+numeric_data <- earthquake_1983 %>%
   select(Magnitude, Distance_km, Intensity, Epicenter_Lat, Epicenter_Lon) %>%
   na.omit()
 
-# Calculate and visualize correlations
-cor_matrix <- cor(numeric_data)
-
-corrplot(cor_matrix,
-         method = "circle",
-         type = "upper",
-         tl.col = "black",
-         addCoef.col = "black",
-         number.cex = 0.8,
-         col = colorRampPalette(c("#6D9EC1", "white", "#E46726"))(200),
-         title = "Correlation Matrix",
-         mar = c(0, 0, 2, 0))
+if(nrow(numeric_data) > 10) {
+  cor_matrix <- cor(numeric_data)
+  
+  corrplot(cor_matrix,
+           method = "circle",
+           type = "upper",
+           tl.col = "black",
+           addCoef.col = "black",
+           number.cex = 0.8,
+           col = colorRampPalette(c("#6D9EC1", "white", "#E46726"))(200),
+           title = "Correlation Matrix (1983 Event)",
+           mar = c(0, 0, 2, 0))
+  
+  cat("\n✓ Correlation matrix generated with", nrow(numeric_data), "complete observations\n")
+} else {
+  stop("Not enough data for 1983 event. Need at least 10 complete observations.")
+}
 ```
 
-**Key correlations to examine:** Magnitude-Distance, Magnitude-Intensity, Distance-Intensity
+::: {.callout-note}
+## Reading the Matrix
+- **Red circles** = Positive correlation (variables increase together)
+- **Blue circles** = Negative correlation (one increases, other decreases)
+- **Circle size** = Strength of correlation
+- **Numbers** = Correlation coefficients (-1 to +1)
+
+By analyzing a single earthquake event (1983), we eliminate the confounding effect where different magnitude earthquakes mask the true physical relationships.
+:::
 
 ---
 
-# 1. Magnitude vs Distance
+# Key Relationships
 
-**Question:** Does magnitude change with measurement location?
-
-**Expected:** No (flat line) - Magnitude is a property of the earthquake itself, like a lightbulb's wattage doesn't change with your distance from it.
+## Magnitude vs Distance
 
 ```{r}
 #| label: fig-mag-distance
-#| fig-cap: "Flat line confirms magnitude is constant across all stations"
+#| fig-cap: "Relationship between earthquake magnitude and distance (1983 event)"
 #| fig-width: 10
 #| fig-height: 6
 
-ggplot(earthquake, aes(x = Distance_km, y = Magnitude)) +
-  geom_point(alpha = 0.4, color = "darkblue", size = 2) +
+ggplot(earthquake_1983, aes(x = Distance_km, y = Magnitude)) +
+  geom_point(alpha = 0.5, color = "darkblue", size = 2.5) +
   geom_smooth(method = "lm", color = "red", linewidth = 1.2, se = TRUE) +
   labs(
-    title = "Magnitude vs Distance from Epicenter",
-    subtitle = "Flat line indicates no relationship - all stations measured the same earthquake",
+    title = "Magnitude vs Distance (1983 Event)",
     x = "Distance (km)",
     y = "Magnitude"
   ) +
   theme_minimal()
-```
 
-```{r}
-cor_test <- cor.test(earthquake$Magnitude, earthquake$Distance_km)
-cat("Correlation:", round(cor_test$estimate, 3), "\n")
+cor_test <- cor.test(earthquake_1983$Magnitude, earthquake_1983$Distance_km)
+cat("\nCorrelation coefficient:", round(cor_test$estimate, 3), "\n")
 cat("P-value:", format.pval(cor_test$p.value), "\n")
 
-if (abs(cor_test$estimate) < 0.3) {
-  cat("\n✓ Weak correlation confirmed - all stations recorded the SAME earthquake\n")
+if (cor_test$p.value < 0.05) {
+  cat("✓ Statistically significant relationship (p < 0.05)\n")
+} else {
+  cat("No statistically significant relationship (p ≥ 0.05)\n")
 }
 ```
 
 ---
 
-# 2. Magnitude vs Intensity
-
-**Question:** Do larger earthquakes produce stronger shaking?
-
-**Expected:** Yes (upward line) - More energy = stronger shaking, like a louder stereo produces louder sound.
+## Magnitude vs Intensity
 
 ```{r}
 #| label: fig-mag-intensity
-#| fig-cap: "Upward trend shows larger earthquakes produce higher intensity"
+#| fig-cap: "Relationship between earthquake magnitude and observed intensity"
 #| fig-width: 10
 #| fig-height: 6
 
-earthquake %>%
-  filter(!is.na(Intensity)) %>%
-  ggplot(aes(x = Magnitude, y = Intensity)) +
-  geom_point(alpha = 0.5, color = "darkgreen", size = 2) +
-  geom_smooth(method = "lm", color = "red", linewidth = 1.2, se = TRUE) +
-  labs(
-    title = "Magnitude vs Intensity",
-    subtitle = "Positive correlation: Larger magnitude → Higher intensity",
-    x = "Magnitude",
-    y = "Intensity"
-  ) +
-  theme_minimal()
-```
+# Check if we should use full dataset or 1983
+use_full_dataset <- var(earthquake_1983$Magnitude, na.rm = TRUE) < 0.01
 
-```{r}
-intensity_data <- earthquake %>% filter(!is.na(Intensity))
-cor_test2 <- cor.test(intensity_data$Magnitude, intensity_data$Intensity)
-cat("Correlation:", round(cor_test2$estimate, 3), "\n")
+if(use_full_dataset) {
+  cat("📊 Using FULL DATASET for Magnitude-Intensity correlation\n")
+  cat("   (1983 has insufficient magnitude variation)\n\n")
+  
+  plot_data <- earthquake %>% filter(!is.na(Intensity))
+  
+  p <- ggplot(plot_data, aes(x = Magnitude, y = Intensity)) +
+    geom_point(alpha = 0.5, color = "darkgreen", size = 2.5) +
+    geom_smooth(method = "lm", color = "red", linewidth = 1.2, se = TRUE) +
+    labs(
+      title = "Magnitude vs Intensity (All Events)",
+      subtitle = "Using full dataset to capture magnitude variation across different earthquakes",
+      x = "Magnitude",
+      y = "Intensity"
+    ) +
+    theme_minimal()
+  
+  print(p)
+  
+  intensity_data_mag <- plot_data
+  cor_test2 <- cor.test(plot_data$Magnitude, plot_data$Intensity)
+  
+} else {
+  cat("📊 Using 1983 EVENT for Magnitude-Intensity correlation\n\n")
+  
+  plot_data <- earthquake_1983 %>% filter(!is.na(Intensity))
+  
+  p <- ggplot(plot_data, aes(x = Magnitude, y = Intensity)) +
+    geom_point(alpha = 0.5, color = "darkgreen", size = 2.5) +
+    geom_smooth(method = "lm", color = "red", linewidth = 1.2, se = TRUE) +
+    labs(
+      title = "Magnitude vs Intensity (1983 Event)",
+      x = "Magnitude",
+      y = "Intensity"
+    ) +
+    theme_minimal()
+  
+  print(p)
+  
+  intensity_data_mag <- plot_data
+  cor_test2 <- cor.test(plot_data$Magnitude, plot_data$Intensity)
+}
+
+cat("\nCorrelation coefficient:", round(cor_test2$estimate, 3), "\n")
 cat("P-value:", format.pval(cor_test2$p.value), "\n")
 
-if (cor_test2$estimate > 0.3 & cor_test2$p.value < 0.05) {
-  cat("\n✓ Positive correlation confirmed - larger earthquakes DO produce stronger shaking\n")
+if (cor_test2$p.value < 0.05) {
+  cat("✓ Statistically significant relationship (p < 0.05)\n")
+} else {
+  cat("No statistically significant relationship (p ≥ 0.05)\n")
 }
 ```
+
+::: {.callout-note}
+## Understanding Magnitude-Intensity Correlation
+
+**Why is this correlation weak for a single event?**
+- In a single earthquake, all observations come from the same seismic event
+- Magnitude is essentially constant (e.g., all readings ~6.0)
+- **You can't correlate two variables if one doesn't vary!**
+
+**The Solution:**
+- For **Magnitude ↔ Intensity**: Use the full dataset (multiple earthquakes with different magnitudes)
+- For **Distance ↔ Intensity**: Use single event (1983) to eliminate confounding
+
+This approach gives us the best of both worlds: true physical relationships without confounding variables.
+:::
 
 ---
 
-# 3. Distance vs Intensity
-
-**Question:** Does shaking weaken as you move away from the earthquake?
-
-**Expected:** Yes (downward line) - Energy dissipates with distance, like fireworks sound quieter when you're far away.
+## Distance vs Intensity
 
 ```{r}
 #| label: fig-distance-intensity
-#| fig-cap: "Downward trend confirms intensity decreases with distance"
+#| fig-cap: "Distance vs Intensity showing seismic attenuation (1983 event)"
 #| fig-width: 10
 #| fig-height: 6
 
-earthquake %>%
+intensity_data <- earthquake_1983 %>% filter(!is.na(Intensity))
+
+earthquake_1983 %>%
   filter(!is.na(Intensity)) %>%
   ggplot(aes(x = Distance_km, y = Intensity)) +
-  geom_point(aes(color = Intensity), alpha = 0.6, size = 2) +
-  geom_smooth(method = "lm", color = "red", linewidth = 1.2, se = TRUE) +
-  scale_color_gradient(low = "yellow", high = "red", name = "Intensity") +
+  geom_point(aes(color = Magnitude), alpha = 0.6, size = 2.5) + 
+  geom_smooth(method = "lm", color = "black", linewidth = 1.2, se = TRUE) +
+  scale_color_gradient(low = "blue", high = "red", name = "Magnitude") +
   labs(
-    title = "Distance vs Intensity",
-    subtitle = "Negative correlation: Greater distance → Lower intensity",
+    title = "Attenuation of Intensity with Distance (1983 Event)",
+    subtitle = "Single event analysis reveals true physical decay of seismic waves",
     x = "Distance (km)",
-    y = "Intensity"
+    y = "Intensity (MMI)"
   ) +
   theme_minimal()
-```
 
-```{r}
 cor_test3 <- cor.test(intensity_data$Distance_km, intensity_data$Intensity)
-cat("Correlation:", round(cor_test3$estimate, 3), "\n")
+cat("\nCorrelation coefficient:", round(cor_test3$estimate, 3), "\n")
 cat("P-value:", format.pval(cor_test3$p.value), "\n")
 
-if (cor_test3$estimate < -0.3 & cor_test3$p.value < 0.05) {
-  cat("\n✓ Negative correlation confirmed - intensity DOES decrease with distance\n")
+if (cor_test3$p.value < 0.05) {
+  cat("✓ Statistically significant relationship (p < 0.05)\n")
+  if(cor_test3$estimate < 0) {
+    cat("✓ Negative correlation confirms seismic attenuation: intensity decreases with distance\n")
+  }
+} else {
+  cat("No statistically significant relationship (p ≥ 0.05)\n")
 }
 ```
+
+::: {.callout-tip}
+## Why Focus on a Single Event for Distance-Intensity?
+
+By analyzing only the 1983 earthquake, we control for magnitude variations. This reveals the true physical relationship: **seismic intensity decreases with distance from the epicenter** (attenuation), which would be masked if we mixed earthquakes of different energy levels.
+:::
 
 ---
 
@@ -188,18 +291,37 @@ if (cor_test3$estimate < -0.3 & cor_test3$p.value < 0.05) {
 #| tbl-cap: "Summary of correlation findings"
 
 tibble(
-  Relationship = c("Magnitude ↔ Distance", "Magnitude ↔ Intensity", "Distance ↔ Intensity"),
+  Relationship = c("Magnitude ↔ Distance (1983)", 
+                   "Magnitude ↔ Intensity (All Events)", 
+                   "Distance ↔ Intensity (1983)"),
   Correlation = c(
-    round(cor(earthquake$Magnitude, earthquake$Distance_km, use = "complete.obs"), 3),
-    round(cor(intensity_data$Magnitude, intensity_data$Intensity, use = "complete.obs"), 3),
+    round(cor(earthquake_1983$Magnitude, earthquake_1983$Distance_km, use = "complete.obs"), 3),
+    round(cor(intensity_data_mag$Magnitude, intensity_data_mag$Intensity, use = "complete.obs"), 3),
     round(cor(intensity_data$Distance_km, intensity_data$Intensity, use = "complete.obs"), 3)
   ),
-  Interpretation = c(
-    "Magnitude constant across stations",
-    "Bigger earthquake = Higher intensity",
-    "Farther away = Lower intensity"
+  Strength = c(
+    case_when(
+      abs(cor(earthquake_1983$Magnitude, earthquake_1983$Distance_km, use = "complete.obs")) > 0.7 ~ "Strong",
+      abs(cor(earthquake_1983$Magnitude, earthquake_1983$Distance_km, use = "complete.obs")) > 0.4 ~ "Moderate",
+      TRUE ~ "Weak"
+    ),
+    case_when(
+      abs(cor(intensity_data_mag$Magnitude, intensity_data_mag$Intensity, use = "complete.obs")) > 0.7 ~ "Strong",
+      abs(cor(intensity_data_mag$Magnitude, intensity_data_mag$Intensity, use = "complete.obs")) > 0.4 ~ "Moderate",
+      TRUE ~ "Weak"
+    ),
+    case_when(
+      abs(cor(intensity_data$Distance_km, intensity_data$Intensity, use = "complete.obs")) > 0.7 ~ "Strong",
+      abs(cor(intensity_data$Distance_km, intensity_data$Intensity, use = "complete.obs")) > 0.4 ~ "Moderate",
+      TRUE ~ "Weak"
+    )
   ),
-  `Matches Physics?` = c("✓ Yes", "✓ Yes", "✓ Yes")
+  `P-value < 0.05` = c(
+    ifelse(cor_test$p.value < 0.05, "Yes", "No"),
+    ifelse(cor_test2$p.value < 0.05, "Yes", "No"),
+    ifelse(cor_test3$p.value < 0.05, "Yes", "No")
+  ),
+  `Data Used` = c("1983 only", "All events", "1983 only")
 ) %>%
   kable()
 ```
@@ -207,15 +329,29 @@ tibble(
 ## Key Findings
 
 ::: {.callout-important}
-## What We Learned
+## Correlation Results - Hybrid Approach
 
-1. **Magnitude is consistent** across all stations (r ≈ 0) → Same earthquake recorded everywhere
-2. **Larger earthquakes produce higher intensity** (r > 0) → More energy = stronger shaking  
-3. **Intensity decreases with distance** (r < 0) → Energy dissipates as waves travel
+This analysis uses a **strategic hybrid approach** to avoid confounding variables:
 
-**All three relationships confirm expected earthquake physics!** Our 1948 data follows the same physical laws we understand today.
+1. **Magnitude and Distance (1983 Event)**: 
+   - Correlation: `r round(cor(earthquake_1983$Magnitude, earthquake_1983$Distance_km, use = "complete.obs"), 3)`
+   - Single event shows how one earthquake's readings vary with distance
+
+2. **Magnitude and Intensity (All Events)**: 
+   - Correlation: `r round(cor(intensity_data_mag$Magnitude, intensity_data_mag$Intensity, use = "complete.obs"), 3)`
+   - **Uses full dataset** because we need magnitude variation to see the relationship
+   - Single events have nearly constant magnitude, making correlation impossible
+
+3. **Distance and Intensity (1983 Event)**: 
+   - Correlation: `r round(cor(intensity_data$Distance_km, intensity_data$Intensity, use = "complete.obs"), 3)`
+   - **Uses single event** to eliminate the confounding effect of different magnitudes
+   - Reveals true seismic attenuation
+
+**Statistical Lesson**: Choose your dataset strategically:
+- Use **single event** when you need to control for magnitude (Distance-Intensity)
+- Use **all events** when you need magnitude variation (Magnitude-Intensity)
 :::
 
 ---
 
-**Next:** Go to [Conclusion](07-conclusions.qmd) →
+**Next:** Go to [Conclusions](07-conclusions.qmd) →

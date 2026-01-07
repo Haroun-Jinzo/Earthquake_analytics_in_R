@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2025-12-30">
+<meta name="dcterms.date" content="2026-01-07">
 
-<title>Data Import – Elements of Data Analysis and Statistics - Templates</title>
+<title>Data Import – Earthquake Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,9 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Elements of Data Analysis and Statistics - Templates
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📥 Data Import</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Elements of Data Analysis and Statistics - Templates</a> 
+      <a href="../">Earthquake Data Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -146,10 +144,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake Data Analysis</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Labs</span></a>
+ <span class="menu-text">📊 Analysis Pipeline</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -157,33 +161,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">x03-Discharge of River Elbe: Homework Project</span></a>
+  <a href="../qmd/01-data-import.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">📥 Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">06-Classical Tests</span></a>
+  <a href="../qmd/02-data-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧹 Data Cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">03-Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R</span></a>
+  <a href="../qmd/03-exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔍 Exploratory Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Title</span></a>
+  <a href="../qmd/04-correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔗 Correlation Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/07-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">✅ Conclusions</span></a>
   </div>
 </li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Projects</span></span>
   </li>
     </ul>
     </div>
@@ -195,16 +201,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">1.1</span> Load Libraries</a></li>
-  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data"><span class="header-section-number">1.2</span> Import the Data</a></li>
-  <li><a href="#check-data-structure" id="toc-check-data-structure" class="nav-link" data-scroll-target="#check-data-structure"><span class="header-section-number">1.3</span> Check Data Structure</a></li>
-  <li><a href="#assign-proper-column-names" id="toc-assign-proper-column-names" class="nav-link" data-scroll-target="#assign-proper-column-names"><span class="header-section-number">1.4</span> Assign Proper Column Names</a></li>
-  <li><a href="#preview-the-data" id="toc-preview-the-data" class="nav-link" data-scroll-target="#preview-the-data"><span class="header-section-number">1.5</span> Preview the Data</a></li>
-  <li><a href="#basic-summary" id="toc-basic-summary" class="nav-link" data-scroll-target="#basic-summary"><span class="header-section-number">1.6</span> Basic Summary</a></li>
-  <li><a href="#save-the-data" id="toc-save-the-data" class="nav-link" data-scroll-target="#save-the-data"><span class="header-section-number">1.7</span> Save the Data</a></li>
-  <li><a href="#important-note" id="toc-important-note" class="nav-link" data-scroll-target="#important-note"><span class="header-section-number">1.8</span> Important Note</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries">Load Libraries</a></li>
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the Data</a></li>
+  <li><a href="#check-data-structure" id="toc-check-data-structure" class="nav-link" data-scroll-target="#check-data-structure">Check Data Structure</a></li>
+  <li><a href="#assign-proper-column-names" id="toc-assign-proper-column-names" class="nav-link" data-scroll-target="#assign-proper-column-names">Assign Proper Column Names</a></li>
+  <li><a href="#preview-the-data" id="toc-preview-the-data" class="nav-link" data-scroll-target="#preview-the-data">Preview the Data</a></li>
+  <li><a href="#basic-summary" id="toc-basic-summary" class="nav-link" data-scroll-target="#basic-summary">Basic Summary</a></li>
+  <li><a href="#save-the-data" id="toc-save-the-data" class="nav-link" data-scroll-target="#save-the-data">Save the Data</a></li>
+  <li><a href="#important-note" id="toc-important-note" class="nav-link" data-scroll-target="#important-note">Important Note</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -212,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📥 Data Import</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Data Import</h1>
 </div>
@@ -231,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 30, 2025</p>
+      <p class="date">January 7, 2026</p>
     </div>
   </div>
   
@@ -243,11 +249,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>In this document, I’ll load the earthquake data from an Excel file.</p>
-<section id="load-libraries" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">1.1</span> Load Libraries</h2>
+<section id="load-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="load-libraries">Load Libraries</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -302,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="import-the-data" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="import-the-data"><span class="header-section-number">1.2</span> Import the Data</h2>
+<section id="import-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-data">Import the Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Excel file</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>earthquake_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"../data/raw/earthquake_data.xlsx"</span>)</span>
@@ -340,8 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="check-data-structure" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="check-data-structure"><span class="header-section-number">1.3</span> Check Data Structure</h2>
+<section id="check-data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="check-data-structure">Check Data Structure</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what column names Excel gave us (if any)</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Current column names:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -389,8 +395,8 @@ Data types:</code></pre>
 </div>
 </div>
 </section>
-<section id="assign-proper-column-names" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="assign-proper-column-names"><span class="header-section-number">1.4</span> Assign Proper Column Names</h2>
+<section id="assign-proper-column-names" class="level2">
+<h2 class="anchored" data-anchor-id="assign-proper-column-names">Assign Proper Column Names</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll assign names based on how many columns we actually have</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>num_cols <span class="ot">&lt;-</span> <span class="fu">ncol</span>(earthquake_raw)</span>
@@ -423,8 +429,8 @@ Data types:</code></pre>
 </div>
 </div>
 </section>
-<section id="preview-the-data" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="preview-the-data"><span class="header-section-number">1.5</span> Preview the Data</h2>
+<section id="preview-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="preview-the-data">Preview the Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first few rows</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(earthquake_raw, <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -592,8 +598,8 @@ Data types:</code></pre>
 </div>
 </div>
 </section>
-<section id="basic-summary" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="basic-summary"><span class="header-section-number">1.6</span> Basic Summary</h2>
+<section id="basic-summary" class="level2">
+<h2 class="anchored" data-anchor-id="basic-summary">Basic Summary</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the data</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(earthquake_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -641,8 +647,8 @@ Data types:</code></pre>
 </div>
 </div>
 </section>
-<section id="save-the-data" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="save-the-data"><span class="header-section-number">1.7</span> Save the Data</h2>
+<section id="save-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="save-the-data">Save the Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create folder if needed</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"../data/processed"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
@@ -655,8 +661,8 @@ Data types:</code></pre>
 </div>
 </div>
 </section>
-<section id="important-note" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="important-note"><span class="header-section-number">1.8</span> Important Note</h2>
+<section id="important-note" class="level2">
+<h2 class="anchored" data-anchor-id="important-note">Important Note</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

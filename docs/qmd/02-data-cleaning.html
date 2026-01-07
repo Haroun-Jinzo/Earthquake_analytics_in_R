@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2025-12-29">
+<meta name="dcterms.date" content="2026-01-07">
 
-<title>Data Cleaning – Elements of Data Analysis and Statistics - Templates</title>
+<title>Data Cleaning – Earthquake Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -119,9 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Elements of Data Analysis and Statistics - Templates
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/02-data-cleaning.html">🧹 Data Cleaning</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Elements of Data Analysis and Statistics - Templates</a> 
+      <a href="../">Earthquake Data Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -146,10 +109,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake Data Analysis</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Labs</span></a>
+ <span class="menu-text">📊 Analysis Pipeline</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -157,33 +126,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">x03-Discharge of River Elbe: Homework Project</span></a>
+  <a href="../qmd/01-data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📥 Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">06-Classical Tests</span></a>
+  <a href="../qmd/02-data-cleaning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">🧹 Data Cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">03-Discharge of River Elbe: Date and Time Computation, Data Management and Plotting with R</span></a>
+  <a href="../qmd/03-exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔍 Exploratory Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/temp4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Title</span></a>
+  <a href="../qmd/04-correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🔗 Correlation Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/07-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">✅ Conclusions</span></a>
   </div>
 </li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Projects</span></span>
   </li>
     </ul>
     </div>
@@ -195,25 +166,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">1.1</span> Load Libraries</a></li>
-  <li><a href="#load-raw-data" id="toc-load-raw-data" class="nav-link" data-scroll-target="#load-raw-data"><span class="header-section-number">1.2</span> Load Raw Data</a></li>
-  <li><a href="#remove-empty-columns" id="toc-remove-empty-columns" class="nav-link" data-scroll-target="#remove-empty-columns"><span class="header-section-number">1.3</span> Remove Empty Columns</a></li>
-  <li><a href="#convert-data-types" id="toc-convert-data-types" class="nav-link" data-scroll-target="#convert-data-types"><span class="header-section-number">1.4</span> Convert Data Types</a></li>
-  <li><a href="#create-datetime-column" id="toc-create-datetime-column" class="nav-link" data-scroll-target="#create-datetime-column"><span class="header-section-number">1.5</span> Create DateTime Column</a></li>
-  <li><a href="#remove-missing-values" id="toc-remove-missing-values" class="nav-link" data-scroll-target="#remove-missing-values"><span class="header-section-number">1.6</span> Remove Missing Values</a></li>
-  <li><a href="#add-helpful-categories" id="toc-add-helpful-categories" class="nav-link" data-scroll-target="#add-helpful-categories"><span class="header-section-number">1.7</span> Add Helpful Categories</a></li>
-  <li><a href="#check-the-cleaned-data" id="toc-check-the-cleaned-data" class="nav-link" data-scroll-target="#check-the-cleaned-data"><span class="header-section-number">1.8</span> Check the Cleaned Data</a></li>
-  <li><a href="#save-cleaned-data" id="toc-save-cleaned-data" class="nav-link" data-scroll-target="#save-cleaned-data"><span class="header-section-number">1.9</span> Save Cleaned Data</a></li>
+  <li><a href="#main-cleaning-script" id="toc-main-cleaning-script" class="nav-link" data-scroll-target="#main-cleaning-script">Main Cleaning Script</a></li>
   </ul></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries">1. Load Libraries</a></li>
+  <li><a href="#load-raw-data" id="toc-load-raw-data" class="nav-link" data-scroll-target="#load-raw-data">2. Load Raw Data</a></li>
+  <li><a href="#ensure-this-path-matches-where-your-import-script-saved-the-file" id="toc-ensure-this-path-matches-where-your-import-script-saved-the-file" class="nav-link" data-scroll-target="#ensure-this-path-matches-where-your-import-script-saved-the-file">Ensure this path matches where your import script saved the file</a></li>
+  <li><a href="#process-the-data" id="toc-process-the-data" class="nav-link" data-scroll-target="#process-the-data">3. Process the Data</a></li>
+  <li><a href="#save-the-clean-data" id="toc-save-the-clean-data" class="nav-link" data-scroll-target="#save-the-clean-data">4. Save the Clean Data</a></li>
+  <li><a href="#output-success-message" id="toc-output-success-message" class="nav-link" data-scroll-target="#output-success-message">5. Output Success Message</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/01-data-import.html">📊 Analysis Pipeline</a></li><li class="breadcrumb-item"><a href="../qmd/02-data-cleaning.html">🧹 Data Cleaning</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Data Cleaning</h1>
 </div>
@@ -232,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 29, 2025</p>
+      <p class="date">January 7, 2026</p>
     </div>
   </div>
   
@@ -244,392 +213,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>Now I’ll clean the data to prepare it for analysis.</p>
-<section id="load-libraries" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">1.1</span> Load Libraries</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyverse' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tibble' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyr' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'purrr' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'stringr' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'forcats' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'lubridate' was built under R version 4.5.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'knitr' was built under R version 4.5.2</code></pre>
-</div>
-</div>
+<section id="main-cleaning-script" class="level2">
+<h2 class="anchored" data-anchor-id="main-cleaning-script">Main Cleaning Script</h2>
+<p>#| label: full-cleaning-process #| message: false #| warning: false</p>
 </section>
-<section id="load-raw-data" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="load-raw-data"><span class="header-section-number">1.2</span> Load Raw Data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>earthquake_raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/processed/earthquake_raw.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
-<section id="remove-empty-columns" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="remove-empty-columns"><span class="header-section-number">1.3</span> Remove Empty Columns</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> earthquake_raw <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"Empty"</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Removed empty columns</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>✓ Removed empty columns</code></pre>
-</div>
-</div>
+<section id="load-libraries" class="level1">
+<h1>1. Load Libraries</h1>
+<p>library(tidyverse) library(lubridate) library(knitr)</p>
 </section>
-<section id="convert-data-types" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="convert-data-types"><span class="header-section-number">1.4</span> Convert Data Types</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to numbers</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">as.integer</span>(Year),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Month =</span> <span class="fu">as.integer</span>(Month),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Day =</span> <span class="fu">as.integer</span>(Day),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Hour =</span> <span class="fu">as.integer</span>(Hour),</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Minute =</span> <span class="fu">as.integer</span>(Minute),</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Second =</span> <span class="fu">as.integer</span>(Second),</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Magnitude =</span> <span class="fu">as.numeric</span>(Magnitude),</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Epicenter_Lat =</span> <span class="fu">as.numeric</span>(Epicenter_Lat),</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Epicenter_Lon =</span> <span class="fu">as.numeric</span>(Epicenter_Lon),</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Distance_km =</span> <span class="fu">as.numeric</span>(Distance_km),</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intensity =</span> <span class="fu">as.integer</span>(Intensity)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There were 11 warnings in `mutate()`.
-The first warning was:
-ℹ In argument: `Year = as.integer(Year)`.
-Caused by warning:
-! NAs introduced by coercion
-ℹ Run `dplyr::last_dplyr_warnings()` to see the 10 remaining warnings.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Converted data types</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>✓ Converted data types</code></pre>
-</div>
-</div>
+<section id="load-raw-data" class="level1">
+<h1>2. Load Raw Data</h1>
 </section>
-<section id="create-datetime-column" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="create-datetime-column"><span class="header-section-number">1.5</span> Create DateTime Column</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">DateTime =</span> <span class="fu">make_datetime</span>(Year, Month, Day, Hour, Minute, Second)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Created DateTime column</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>✓ Created DateTime column</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Date range:"</span>, <span class="fu">format</span>(<span class="fu">min</span>(earthquake<span class="sc">$</span>DateTime)), <span class="st">"to"</span>, <span class="fu">format</span>(<span class="fu">max</span>(earthquake<span class="sc">$</span>DateTime)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Date range: NA to NA </code></pre>
-</div>
-</div>
+<section id="ensure-this-path-matches-where-your-import-script-saved-the-file" class="level1">
+<h1>Ensure this path matches where your import script saved the file</h1>
+<p>earthquake_raw &lt;- readRDS(“../data/processed/earthquake_raw.rds”)</p>
 </section>
-<section id="remove-missing-values" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="remove-missing-values"><span class="header-section-number">1.6</span> Remove Missing Values</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows before:"</span>, <span class="fu">nrow</span>(earthquake), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows before: 157016 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows without coordinates</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Epicenter_Lat) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Epicenter_Lon))</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># After</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows after:"</span>, <span class="fu">nrow</span>(earthquake), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows after: 142083 </code></pre>
-</div>
-</div>
+<section id="process-the-data" class="level1">
+<h1>3. Process the Data</h1>
+<p>earthquake &lt;- earthquake_raw %&gt;% # Remove empty columns select(-starts_with(“Empty”)) %&gt;%</p>
+<p># Convert Data Types &amp; Fix Intensity mutate( # Convert time parts to integers Year = as.integer(Year), Month = as.integer(Month), Day = as.integer(Day), Hour = as.integer(Hour), Minute = as.integer(Minute), Second = as.integer(Second),</p>
+<pre><code># Convert measurements to numeric
+Magnitude = as.numeric(Magnitude),
+Epicenter_Lat = as.numeric(Epicenter_Lat),
+Epicenter_Lon = as.numeric(Epicenter_Lon),
+Distance_km = as.numeric(Distance_km),
+
+# FIX: Handle Roman Numerals (IV, V) and numbers simultaneously
+Intensity = case_when(
+  Intensity == "I" ~ 1,
+  Intensity == "II" ~ 2,
+  Intensity == "III" ~ 3,
+  Intensity == "IV" ~ 4,
+  Intensity == "V" ~ 5,
+  Intensity == "VI" ~ 6,
+  Intensity == "VII" ~ 7,
+  Intensity == "VIII" ~ 8,
+  Intensity == "IX" ~ 9,
+  Intensity == "X" ~ 10,
+  TRUE ~ as.numeric(as.character(Intensity)) # Handle standard numbers
+)</code></pre>
+<p>) %&gt;%</p>
+<p># Create DateTime mutate( DateTime = make_datetime(Year, Month, Day, Hour, Minute, Second) ) %&gt;%</p>
+<p># Remove invalid rows (missing coordinates) filter(!is.na(Epicenter_Lat) &amp; !is.na(Epicenter_Lon)) %&gt;%</p>
+<p># SCIENTIFIC FILTER (Fixes Correlation Issue) # Isolate 1983 events and ensure valid physics values filter( Year == 1983, # Focus on the specific event year Magnitude &gt; 0, # Remove invalid magnitudes Distance_km &gt;= 0 # Remove invalid distances ) %&gt;%</p>
+<p># Add Categories mutate( Distance_Category = case_when( Distance_km &lt; 50 ~ “Near”, Distance_km &lt; 100 ~ “Medium”, Distance_km &lt; 150 ~ “Far”, TRUE ~ “Very Far” ) )</p>
 </section>
-<section id="add-helpful-categories" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="add-helpful-categories"><span class="header-section-number">1.7</span> Add Helpful Categories</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>earthquake <span class="ot">&lt;-</span> earthquake <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distance categories</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Distance_Category =</span> <span class="fu">case_when</span>(</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      Distance_km <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Near"</span>,</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>      Distance_km <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"Medium"</span>,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>      Distance_km <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"Far"</span>,</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Very Far"</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Added distance categories</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>✓ Added distance categories</code></pre>
-</div>
-</div>
+<section id="save-the-clean-data" class="level1">
+<h1>4. Save the Clean Data</h1>
+<p>saveRDS(earthquake, “../data/processed/earthquake_clean.rds”) write_csv(earthquake, “../data/processed/earthquake_clean.csv”)</p>
 </section>
-<section id="check-the-cleaned-data" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="check-the-cleaned-data"><span class="header-section-number">1.8</span> Check the Cleaned Data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(earthquake) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 8%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Year</th>
-<th style="text-align: right;">Month</th>
-<th style="text-align: right;">Day</th>
-<th style="text-align: right;">Hour</th>
-<th style="text-align: right;">Minute</th>
-<th style="text-align: right;">Second</th>
-<th style="text-align: right;">Magnitude</th>
-<th style="text-align: right;">Epicenter_Lat</th>
-<th style="text-align: right;">Epicenter_Lon</th>
-<th style="text-align: right;">Distance_km</th>
-<th style="text-align: left;">Station_Lat</th>
-<th style="text-align: left;">Station_Lon</th>
-<th style="text-align: right;">Intensity</th>
-<th style="text-align: left;">State</th>
-<th style="text-align: left;">Location</th>
-<th style="text-align: left;">Quality</th>
-<th style="text-align: left;">Country</th>
-<th style="text-align: left;">DateTime</th>
-<th style="text-align: left;">Distance_Category</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1852</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">34.5</td>
-<td style="text-align: right;">-119.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">34.5</td>
-<td style="text-align: left;">-119.0</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">LOCKWOOD VALLEY</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Near</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1852</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">34.5</td>
-<td style="text-align: right;">-119.0</td>
-<td style="text-align: right;">258</td>
-<td style="text-align: left;">33.02</td>
-<td style="text-align: left;">-116.84</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">SAN DIEGO</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Very Far</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1852</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">34.5</td>
-<td style="text-align: right;">-119.0</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: left;">35.35</td>
-<td style="text-align: left;">-120.41</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">SAN LUIS OBISPO</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Very Far</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1852</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">34.5</td>
-<td style="text-align: right;">-119.0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">COLORADO RIVER</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Very Far</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1860</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">41.0</td>
-<td style="text-align: right;">-124.0</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: left;">40.76</td>
-<td style="text-align: left;">-124.22</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">HUMBOLDT BAY</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Near</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1897</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">42.9</td>
-<td style="text-align: right;">-106.3</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">42.83</td>
-<td style="text-align: left;">-106.32</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">WY</td>
-<td style="text-align: left;">CASPER</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Near</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Cleaned Data Summary:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Cleaned Data Summary:</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Total observations:"</span>, <span class="fu">nrow</span>(earthquake), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Total observations: 142083 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"States:"</span>, <span class="fu">paste</span>(<span class="fu">unique</span>(earthquake<span class="sc">$</span>State), <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>States: CA, WY, CO, AK, WA, NV, IN, SC, GA, NY, MO, TN, MS, KY, IL, AR, NC, TX, MD, ME, NB, QC, NS, CT, OR, UT, SD, MA, RI, ON, AL, BC, MXBC, AZ, OH, IA, VA, DC, KS, NH, PA, DE, WV, FL, VT, HI, OK, NM, MI, WI, NJ, MT, NE, ID, LA, PR, VI, ND, MXSO, YT, NA, MXME, MN, SK, AB, MB, NL </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Magnitude range:"</span>, <span class="fu">min</span>(earthquake<span class="sc">$</span>Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"to"</span>, <span class="fu">max</span>(earthquake<span class="sc">$</span>Magnitude, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Magnitude range: 4 to 11 </code></pre>
-</div>
-</div>
-</section>
-<section id="save-cleaned-data" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="save-cleaned-data"><span class="header-section-number">1.9</span> Save Cleaned Data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save as RDS</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(earthquake, <span class="st">"../data/processed/earthquake_clean.rds"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Also save as CSV</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(earthquake, <span class="st">"../data/processed/earthquake_clean.csv"</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Cleaned data saved!</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>✓ Cleaned data saved!</code></pre>
-</div>
-</div>
-<hr>
-<p><strong>Next:</strong> Go to <a href="../qmd/03-exploratory.html">Exploratory Analysis</a> →</p>
+<section id="output-success-message" class="level1">
+<h1>5. Output Success Message</h1>
+<p>cat(“=== Data Cleaning Complete ===”) cat(“Total clean observations:”, nrow(earthquake), “”) cat(“Year isolated:”, unique(earthquake$Year), “”) cat(“Data saved to: ../data/processed/earthquake_clean.rds”)</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

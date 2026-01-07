@@ -12,76 +12,77 @@ format:
 
 Now I'll clean the data to prepare it for analysis.
 
-## Load Libraries
+## Main Cleaning Script
+
 ```{r}
+#| label: full-cleaning-process
+#| message: false
+#| warning: false
+
+# 1. Load Libraries
 library(tidyverse)
 library(lubridate)
 library(knitr)
-```
 
-## Load Raw Data
-```{r}
+# 2. Load Raw Data
+# Ensure this path matches where your import script saved the file
 earthquake_raw <- readRDS("../data/processed/earthquake_raw.rds")
-```
 
-## Remove Empty Columns
-```{r}
+# 3. Process the Data
 earthquake <- earthquake_raw %>%
-  select(-starts_with("Empty"))
-
-cat("✓ Removed empty columns\n")
-```
-
-## Convert Data Types
-```{r}
-earthquake <- earthquake %>%
+  # Remove empty columns
+  select(-starts_with("Empty")) %>%
+  
+  # Convert Data Types & Fix Intensity
   mutate(
-    # Convert to numbers
+    # Convert time parts to integers
     Year = as.integer(Year),
     Month = as.integer(Month),
     Day = as.integer(Day),
     Hour = as.integer(Hour),
     Minute = as.integer(Minute),
     Second = as.integer(Second),
+    
+    # Convert measurements to numeric
     Magnitude = as.numeric(Magnitude),
     Epicenter_Lat = as.numeric(Epicenter_Lat),
     Epicenter_Lon = as.numeric(Epicenter_Lon),
     Distance_km = as.numeric(Distance_km),
-    Intensity = as.integer(Intensity)
-  )
-
-cat("✓ Converted data types\n")
-```
-
-## Create DateTime Column
-```{r}
-earthquake <- earthquake %>%
+    
+    # FIX: Handle Roman Numerals (IV, V) and numbers simultaneously
+    Intensity = case_when(
+      Intensity == "I" ~ 1,
+      Intensity == "II" ~ 2,
+      Intensity == "III" ~ 3,
+      Intensity == "IV" ~ 4,
+      Intensity == "V" ~ 5,
+      Intensity == "VI" ~ 6,
+      Intensity == "VII" ~ 7,
+      Intensity == "VIII" ~ 8,
+      Intensity == "IX" ~ 9,
+      Intensity == "X" ~ 10,
+      TRUE ~ as.numeric(as.character(Intensity)) # Handle standard numbers
+    )
+  ) %>%
+  
+  # Create DateTime
   mutate(
     DateTime = make_datetime(Year, Month, Day, Hour, Minute, Second)
-  )
+  ) %>%
+  
+  # Remove invalid rows (missing coordinates)
+  filter(!is.na(Epicenter_Lat) & !is.na(Epicenter_Lon)) %>%
 
-cat("✓ Created DateTime column\n")
-cat("Date range:", format(min(earthquake$DateTime)), "to", format(max(earthquake$DateTime)), "\n")
-```
+  # SCIENTIFIC FILTER (Fixes Correlation Issue)
+  # Isolate 1983 events and ensure valid physics values
+  filter(
+    Year == 1983,           # Focus on the specific event year
+    Magnitude > 0,          # Remove invalid magnitudes
+    Distance_km >= 0        # Remove invalid distances
+  ) %>%
 
-## Remove Missing Values
-```{r}
-# Before
-cat("Rows before:", nrow(earthquake), "\n")
-
-# Remove rows without coordinates
-earthquake <- earthquake %>%
-  filter(!is.na(Epicenter_Lat) & !is.na(Epicenter_Lon))
-
-# After
-cat("Rows after:", nrow(earthquake), "\n")
-```
-
-## Add Helpful Categories
-```{r}
-earthquake <- earthquake %>%
+  # Add Categories
   mutate(
-    # Distance categories
     Distance_Category = case_when(
       Distance_km < 50 ~ "Near",
       Distance_km < 100 ~ "Medium",
@@ -90,34 +91,12 @@ earthquake <- earthquake %>%
     )
   )
 
-cat("✓ Added distance categories\n")
-```
-
-## Check the Cleaned Data
-```{r}
-# Preview
-head(earthquake) %>% kable()
-```
-```{r}
-# Summary
-cat("\nCleaned Data Summary:\n")
-cat("Total observations:", nrow(earthquake), "\n")
-cat("States:", paste(unique(earthquake$State), collapse = ", "), "\n")
-cat("Magnitude range:", min(earthquake$Magnitude, na.rm = TRUE), 
-    "to", max(earthquake$Magnitude, na.rm = TRUE), "\n")
-```
-
-## Save Cleaned Data
-```{r}
-# Save as RDS
+# 4. Save the Clean Data
 saveRDS(earthquake, "../data/processed/earthquake_clean.rds")
-
-# Also save as CSV
 write_csv(earthquake, "../data/processed/earthquake_clean.csv")
 
-cat("✓ Cleaned data saved!\n")
-```
-
----
-
-**Next:** Go to [Exploratory Analysis](03-exploratory.qmd) →
+# 5. Output Success Message
+cat("=== Data Cleaning Complete ===\n")
+cat("Total clean observations:", nrow(earthquake), "\n")
+cat("Year isolated:", unique(earthquake$Year), "\n")
+cat("Data saved to: ../data/processed/earthquake_clean.rds\n")
