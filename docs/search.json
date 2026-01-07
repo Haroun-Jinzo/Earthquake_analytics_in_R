@@ -528,7 +528,7 @@
     "href": "presentation.html#thank-you",
     "title": "Earthquake Data Analysis",
     "section": "Thank You",
-    "text": "Thank You\nQuestions?"
+    "text": "Thank You\nQuestions?\nEarthquake Analysis Project - Earthquake Data Analysis Lake Tahoe Region - December 1948 ## Conclusions\n\nMain Event: Magnitude 8 earthquake on December 16, 1948 in Lake Tahoe region\nExtensive Network: 200+ observations recorded across multiple states\nPhysics Confirmed: Seismic waves lose intensity with distance\nData Quality: High-quality recording of a major earthquake event\nResearch Value: Valuable dataset for studying seismic wave propagation"
   },
   {
     "objectID": "presentation.html#correlation-analysis---magnitude-vs-distance",
@@ -592,5 +592,103 @@
     "title": "Earthquake Data Analysis",
     "section": "Geographic Coverage (Additional States)",
     "text": "Geographic Coverage (Additional States)\n\n\n\n\n\nState\nObservations\n\n\n\n\nMO\n2378\n\n\nME\n2193\n\n\nUT\n1839\n\n\nCO\n1740\n\n\nTN\n1655\n\n\nKY\n1646\n\n\nAR\n1483\n\n\nMA\n1430\n\n\nPA\n1309\n\n\nIN\n1300\n\n\n\n\n\nTotal: 19416 unique stations across 67 states"
+  },
+  {
+    "objectID": "presentation.html#advanced-analysis-intensity-distribution-by-magnitude",
+    "href": "presentation.html#advanced-analysis-intensity-distribution-by-magnitude",
+    "title": "Earthquake Data Analysis",
+    "section": "Advanced Analysis: Intensity Distribution by Magnitude",
+    "text": "Advanced Analysis: Intensity Distribution by Magnitude"
+  },
+  {
+    "objectID": "presentation.html#distance-categories-heatmap",
+    "href": "presentation.html#distance-categories-heatmap",
+    "title": "Earthquake Data Analysis",
+    "section": "Distance Categories Heatmap",
+    "text": "Distance Categories Heatmap"
+  },
+  {
+    "objectID": "presentation.html#magnitude-statistics-by-distance",
+    "href": "presentation.html#magnitude-statistics-by-distance",
+    "title": "Earthquake Data Analysis",
+    "section": "Magnitude Statistics by Distance",
+    "text": "Magnitude Statistics by Distance\n\n\n\nMagnitude Statistics by Distance\n\n\nDistance_Category\nMin\nQ1\nMedian\nMean\nQ3\nMax\n\n\n\n\nNear\n4\n8\n8\n7.70\n8\n11\n\n\nMedium\n4\n7\n8\n7.57\n8\n11\n\n\nFar\n4\n7\n8\n7.40\n8\n10\n\n\nVery Far\n4\n6\n8\n7.03\n8\n11"
+  },
+  {
+    "objectID": "presentation.html#observation-count-distribution",
+    "href": "presentation.html#observation-count-distribution",
+    "title": "Earthquake Data Analysis",
+    "section": "Observation Count Distribution",
+    "text": "Observation Count Distribution"
+  },
+  {
+    "objectID": "presentation.html#intensity-variability-analysis",
+    "href": "presentation.html#intensity-variability-analysis",
+    "title": "Earthquake Data Analysis",
+    "section": "Intensity Variability Analysis",
+    "text": "Intensity Variability Analysis\n\n\n\nIntensity Variability by Distance\n\n\nDistance_Category\nMean\nSD\nMin\nMax\nRange\n\n\n\n\nNear\n3.88\n1.25\n1\n12\n11\n\n\nMedium\n3.97\n1.10\n1\n11\n10\n\n\nFar\n3.95\n1.05\n2\n10\n8\n\n\nVery Far\n3.80\n1.04\n1\n11\n10"
+  },
+  {
+    "objectID": "presentation.html#magnitude-vs-intensity-violin-plot",
+    "href": "presentation.html#magnitude-vs-intensity-violin-plot",
+    "title": "Earthquake Data Analysis",
+    "section": "Magnitude vs Intensity Violin Plot",
+    "text": "Magnitude vs Intensity Violin Plot"
+  },
+  {
+    "objectID": "presentation.html#recording-station-density-map",
+    "href": "presentation.html#recording-station-density-map",
+    "title": "Earthquake Data Analysis",
+    "section": "Recording Station Density Map",
+    "text": "Recording Station Density Map"
+  },
+  {
+    "objectID": "presentation.html#distance-distribution-by-state-top-states",
+    "href": "presentation.html#distance-distribution-by-state-top-states",
+    "title": "Earthquake Data Analysis",
+    "section": "Distance Distribution by State (Top States)",
+    "text": "Distance Distribution by State (Top States)"
+  },
+  {
+    "objectID": "presentation.html#attenuation-curve-with-error-bars",
+    "href": "presentation.html#attenuation-curve-with-error-bars",
+    "title": "Earthquake Data Analysis",
+    "section": "Attenuation Curve with Error Bars",
+    "text": "Attenuation Curve with Error Bars"
+  },
+  {
+    "objectID": "presentation.html#data-quality-summary",
+    "href": "presentation.html#data-quality-summary",
+    "title": "Earthquake Data Analysis",
+    "section": "Data Quality Summary",
+    "text": "Data Quality Summary\n\n\n\nData Quality Assessment\n\n\nMetric\nValue\n\n\n\n\nTotal Records\n142083\n\n\nComplete Cases (Magnitude + Distance)\n134191\n\n\nWith Intensity Data\n116500\n\n\nWith All Variables\n91923\n\n\nCompleteness Rate\n64.7%"
+  },
+  {
+    "objectID": "presentation.html#key-physical-insights",
+    "href": "presentation.html#key-physical-insights",
+    "title": "Earthquake Data Analysis",
+    "section": "Key Physical Insights",
+    "text": "Key Physical Insights\n\nSeismic Wave Attenuation: Clear inverse relationship between distance and intensity confirms theoretical predictions of seismic wave decay\nMagnitude Distribution: Multiple magnitude ranges at each distance suggest both the main shock and aftershock/foreshock sequence were well-recorded\nRecording Bias: Near-field stations captured more complete magnitude spectrum while far-field stations preferentially recorded larger events\nData Completeness: High-quality dataset with consistent magnitude measurements and geographic distribution\nPhysical Significance: Results align with established seismological principles of wave propagation and energy dissipation"
+  },
+  {
+    "objectID": "presentation.html#statistical-summary",
+    "href": "presentation.html#statistical-summary",
+    "title": "Earthquake Data Analysis",
+    "section": "Statistical Summary",
+    "text": "Statistical Summary\n\n\n\nComprehensive Statistical Summary\n\n\nAnalysis\nResult\n\n\n\n\nMagnitude Range\n4 to 11 (Richter)\n\n\nDistance Range\n0 to 9930 km\n\n\nIntensity Range\n1 to 12 (MMI)\n\n\nMean Observations per Distance Category\n35521\n\n\nUnique Recording Stations\n19416"
+  },
+  {
+    "objectID": "presentation.html#conclusions-implications",
+    "href": "presentation.html#conclusions-implications",
+    "title": "Earthquake Data Analysis",
+    "section": "Conclusions & Implications",
+    "text": "Conclusions & Implications\n\nDataset Quality: The 1948 Lake Tahoe earthquake dataset is exceptionally well-documented with comprehensive recording coverage\nScientific Value: Provides valuable insights into seismic wave propagation and attenuation mechanisms\nMethodological Insight: Single-event analysis reveals true physical relationships without confounding from multiple earthquakes\nFuture Applications: This dataset could be used for earthquake risk assessment and seismic hazard modeling in the region\nResearch Directions: Comparative analysis with modern earthquakes could reveal improvements in recording technology and methodology"
+  },
+  {
+    "objectID": "presentation.html#thank-you-1",
+    "href": "presentation.html#thank-you-1",
+    "title": "Earthquake Data Analysis",
+    "section": "Thank You",
+    "text": "Thank You\nQuestions?"
   }
 ]

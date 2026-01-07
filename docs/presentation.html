@@ -129,7 +129,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Earthquake Data Analysis</h1>
-  <p class="subtitle">USA Country</p>
+  <p class="subtitle">USA Country Earthquakes</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -138,8 +138,8 @@ Khmiri Haroun
 </div>
 </div>
 </div>
-<div class="quarto-professor-name">
-Professor: Dr.Khmaies abbdallah
+<div class="quarto-title-professor">
+  Professor: Dr. Khmaies Abdallah
 </div>
 
   <p class="date">2026-01-07</p>
@@ -148,9 +148,9 @@ Professor: Dr.Khmaies abbdallah
 <h2>Project Overview</h2>
 <ul>
 <li><strong>Dataset:</strong> Earthquake recordings</li>
-<li><strong>Region:</strong> USA States</li>
+<li><strong>Region:</strong> USA Country</li>
 <li><strong>Observations:</strong> 142083 earthquake events</li>
-<li><strong>Recording Stations:</strong> 19416 locations across 50 states</li>
+<li><strong>Recording Stations:</strong> 19416 locations across 67 states</li>
 <li><strong>Distance Range:</strong> 0 to 9930 km</li>
 </ul>
 </section>
@@ -331,7 +331,7 @@ Professor: Dr.Khmaies abbdallah
 <section id="magnitude-by-distance" class="slide level2">
 <h2>Magnitude by Distance</h2>
 
-<img data-src="presentation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p><strong>Key Finding:</strong> Near distances record smaller events far distances captured the main shock (M8+)</p>
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p><strong>Key Finding:</strong> Near distances record smaller events; far distances captured the main shock (M8+)</p>
 </section>
 <section id="intensity-by-magnitude-and-distance-near-medium" class="slide level2">
 <h2>Intensity by Magnitude and Distance (Near &amp; Medium)</h2>
@@ -559,6 +559,143 @@ Professor: Dr.Khmaies abbdallah
 </div>
 </div>
 </section>
+<section id="advanced-analysis-intensity-distribution-by-magnitude" class="slide level2">
+<h2>Advanced Analysis: Intensity Distribution by Magnitude</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="distance-categories-heatmap" class="slide level2">
+<h2>Distance Categories Heatmap</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<section id="magnitude-statistics-by-distance" class="slide level2">
+<h2>Magnitude Statistics by Distance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Magnitude Statistics by Distance</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Distance_Category</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Q1</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Near</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7.70</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Medium</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7.57</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Far</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7.40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Very Far</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7.03</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="observation-count-distribution" class="slide level2">
+<h2>Observation Count Distribution</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<section id="intensity-variability-analysis" class="slide level2">
+<h2>Intensity Variability Analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Intensity Variability by Distance</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Distance_Category</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Near</td>
+<td style="text-align: right;">3.88</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Medium</td>
+<td style="text-align: right;">3.97</td>
+<td style="text-align: right;">1.10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Far</td>
+<td style="text-align: right;">3.95</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Very Far</td>
+<td style="text-align: right;">3.80</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="recording-station-density-map" class="slide level2">
+<h2>Recording Station Density Map</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<section id="distance-distribution-by-state-top-states" class="slide level2">
+<h2>Distance Distribution by State (Top States)</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<section id="attenuation-curve-with-error-bars" class="slide level2">
+<h2>Attenuation Curve with Error Bars</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
 <section id="key-insights-from-analysis" class="slide level2">
 <h2>Key Insights from Analysis</h2>
 <ul>
@@ -569,17 +706,113 @@ Professor: Dr.Khmaies abbdallah
 <li class="fragment"><strong>Seismic Physics:</strong> Correlations confirm known seismic wave propagation patterns</li>
 </ul>
 </section>
-<section id="conclusions" class="slide level2">
-<h2>Conclusions</h2>
+<section id="data-quality-summary" class="slide level2">
+<h2>Data Quality Summary</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Data Quality Assessment</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Total Records</td>
+<td style="text-align: left;">142083</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Complete Cases (Magnitude + Distance)</td>
+<td style="text-align: left;">134191</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">With Intensity Data</td>
+<td style="text-align: left;">116500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">With All Variables</td>
+<td style="text-align: left;">91923</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Completeness Rate</td>
+<td style="text-align: left;">64.7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="key-physical-insights" class="slide level2">
+<h2>Key Physical Insights</h2>
+<ol type="1">
+<li class="fragment"><p><strong>Seismic Wave Attenuation:</strong> Clear inverse relationship between distance and intensity confirms theoretical predictions of seismic wave decay</p></li>
+<li class="fragment"><p><strong>Magnitude Distribution:</strong> Multiple magnitude ranges at each distance suggest both the main shock and aftershock/foreshock sequence were well-recorded</p></li>
+<li class="fragment"><p><strong>Recording Bias:</strong> Near-field stations captured more complete magnitude spectrum while far-field stations preferentially recorded larger events</p></li>
+<li class="fragment"><p><strong>Data Completeness:</strong> High-quality dataset with consistent magnitude measurements and geographic distribution</p></li>
+<li class="fragment"><p><strong>Physical Significance:</strong> Results align with established seismological principles of wave propagation and energy dissipation</p></li>
+</ol>
+</section>
+<section id="statistical-summary" class="slide level2">
+<h2>Statistical Summary</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Comprehensive Statistical Summary</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Analysis</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Magnitude Range</td>
+<td style="text-align: left;">4 to 11 (Richter)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distance Range</td>
+<td style="text-align: left;">0 to 9930 km</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Intensity Range</td>
+<td style="text-align: left;">1 to 12 (MMI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean Observations per Distance Category</td>
+<td style="text-align: left;">35521</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unique Recording Stations</td>
+<td style="text-align: left;">19416</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="conclusions-implications" class="slide level2">
+<h2>Conclusions &amp; Implications</h2>
+<ul>
+<li class="fragment"><p><strong>Dataset Quality:</strong> The USA earthquake dataset is exceptionally well-documented with comprehensive recording coverage</p></li>
+<li class="fragment"><p><strong>Scientific Value:</strong> Provides valuable insights into seismic wave propagation and attenuation mechanisms</p></li>
+<li class="fragment"><p><strong>Methodological Insight:</strong> Single-event analysis reveals true physical relationships without confounding from multiple earthquakes</p></li>
+<li class="fragment"><p><strong>Future Applications:</strong> This dataset could be used for earthquake risk assessment and seismic hazard modeling in the region</p></li>
+<li class="fragment"><p><strong>Research Directions:</strong> Comparative analysis with modern earthquakes could reveal improvements in recording technology and methodology</p></li>
+</ul>
+</section>
+<section id="thank-you" class="slide level2">
+<p><em>Earthquake Analysis Project - Earthquake Data Analysis</em> <em>Lake Tahoe Region - December 1948</em> ## Conclusions</p>
 <ul>
 <li><strong>Main Event:</strong> Magnitude 8 earthquake on December 16, 1948 in Lake Tahoe region</li>
 <li><strong>Extensive Network:</strong> 200+ observations recorded across multiple states</li>
 <li><strong>Physics Confirmed:</strong> Seismic waves lose intensity with distance</li>
 <li><strong>Data Quality:</strong> High-quality recording of a major earthquake event</li>
-<li><strong>Research Value:</strong>studying seismic wave propagation</li>
+<li><strong>Research Value:</strong> Valuable dataset for studying seismic wave propagation</li>
 </ul>
 </section>
-<section id="thank-you" class="slide level2">
+<section id="thank-you-1" class="slide level2">
 <h2>Thank You</h2>
 
 
